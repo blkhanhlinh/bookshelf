@@ -1,5 +1,5 @@
 # bookshelf-fe
-This is the frontend of the bookshelf project. It is built with Next.js and Chakra UI.
+This is the frontend of the bookshelf project. It is built with Next.js, TailwindCSS and Chakra UI.
 
 1. Install dependencies:
 ```bash
