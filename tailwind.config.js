@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const bookshelfColors = require('./utils/colors')
 const defaultTheme = require('tailwindcss/defaultTheme')
-
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -117,10 +116,30 @@ module.exports = {
                 color: theme('colors.primary.dark'),
               },
             },
-            h1,h2,h3,h4,h5,h6: {
+            h1: {
               color: theme('colors.info'),
               fontWeight: 700,
             },
+            h2: {
+              color: theme('colors.info'),
+              fontWeight: 700,
+            },
+            h3: {
+              color: theme('colors.info'),
+              fontWeight: 700,
+            },
+            h4: {
+              color: theme('colors.info'),
+              fontWeight: 700,
+            },
+            h5: {
+              color: theme('colors.info'),
+              fontWeight: 700,
+            },
+            h6: {
+              color: theme('colors.info'),
+              fontWeight: 700,
+            }
           }
         },
       })
