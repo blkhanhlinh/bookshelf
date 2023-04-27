@@ -27,6 +27,7 @@ const bookshelfColors = {
         4: '#BDBDBD',
         5: '#E0E0E0',
     },
+    background: '#FFFAF4',
 }
 
 module.exports = bookshelfColors
