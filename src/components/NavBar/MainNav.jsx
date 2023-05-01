@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import bookshelfColors from '../../../utils/colors'
+import bookshelfColors from '@/utils/colors'
 import { SearchBar } from '.'
 import { Stack } from '@chakra-ui/react'
 
