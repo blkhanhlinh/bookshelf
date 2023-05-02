@@ -1,7 +1,21 @@
 import { Stack } from '@chakra-ui/react'
 import Link from 'next/link'
+import { useState, useEffect } from "react";
+import useWindowSize from "@/utils/hooks/useWindowSize";
+
 
 const SubNav = () => {
+    const [isClient, setIsClient] = useState(false)
+	const { width } = useWindowSize()
+
+	useEffect(() => {
+		setIsClient(true);
+	}, []);
+
+	if (!isClient || width < 1024) {
+		return null;
+	}
+
     const categories = [
         {
             name: 'Home',
