@@ -1,20 +1,20 @@
-import Image from "next/image";
-import bookshelfColors from "@/utils/colors";
-import { Stack } from "@chakra-ui/react";
-import useWindowSize from "@/utils/hooks/useWindowSize";
-import { InputGroup, Input, InputRightElement, Button } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import Image from 'next/image'
+import bookshelfColors from '@/utils/colors'
+import { Stack } from '@chakra-ui/react'
+import useWindowSize from '@/utils/hooks/useWindowSize'
+import { InputGroup, Input, InputRightElement, Button } from '@chakra-ui/react'
+import { useState, useEffect } from 'react'
 
 const MainNav = () => {
-	const [isClient, setIsClient] = useState(false);
-	const { width } = useWindowSize();
+	const [isClient, setIsClient] = useState(false)
+	const { width } = useWindowSize()
 
 	useEffect(() => {
-		setIsClient(true);
-	}, []);
+		setIsClient(true)
+	}, [])
 
 	if (!isClient) {
-		return null;
+		return null
 	}
 
 	return (
@@ -77,7 +77,7 @@ const MainNav = () => {
 								focusBorderColor={bookshelfColors.primary.main}
 								_placeholder={{
 									opacity: 1,
-									color: bookshelfColors.grey[4]
+									color: bookshelfColors.grey[4],
 								}}
 								width='40vw'
 							/>
@@ -209,7 +209,7 @@ const MainNav = () => {
 								focusBorderColor={bookshelfColors.primary.main}
 								_placeholder={{
 									opacity: 1,
-									color: bookshelfColors.grey[4]
+									color: bookshelfColors.grey[4],
 								}}
 								width='50vw'
 								size='sm'
@@ -263,7 +263,7 @@ const MainNav = () => {
 				</Stack>
 			)}
 		</nav>
-	);
-};
+	)
+}
 
-export default MainNav;
+export default MainNav
