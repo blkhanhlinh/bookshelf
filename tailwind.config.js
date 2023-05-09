@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const bookshelfColors = require('./utils/colors')
+const bookshelfColors = require('./src/utils/colors')
 const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: [
