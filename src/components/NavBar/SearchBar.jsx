@@ -1,5 +1,5 @@
 import { InputGroup, Input, InputRightElement, Button } from '@chakra-ui/react'
-import bookshelfColors from '../../../utils/colors'
+import bookshelfColors from '@/styles/colors'
 
 const SearchBar = ({ containerClass, inputWidth }) => {
     return (
