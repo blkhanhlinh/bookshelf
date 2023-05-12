@@ -41,6 +41,7 @@ const MainNav = () => {
 					spacing='1rem'
 					justify='center'
 					align='center'
+					width={'50%'}
 				>
 					<InputGroup className='h-10'>
 						<Input
@@ -53,7 +54,7 @@ const MainNav = () => {
 								opacity: 1,
 								color: bookshelfColors.grey[4],
 							}}
-							width='40vw'
+							width='100%'
 						/>
 						<InputRightElement width='4.5rem'>
 							<Button
