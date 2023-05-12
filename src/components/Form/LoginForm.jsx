@@ -1,3 +1,4 @@
+import bookshelfColors from '@/styles/colors'
 import {
 	Flex,
 	Box,
@@ -8,64 +9,73 @@ import {
 	Stack,
 	Link,
 	Button,
-	Heading,
 	Text,
-	useColorModeValue,
 } from '@chakra-ui/react'
 
 const LoginForm = () => {
 	return (
 		<Flex
-			minH={'100vh'}
-			align={'center'}
-			justify={'center'}
-			bg={useColorModeValue('gray.50', 'gray.800')}
+			borderRadius={'2xl'}
+			bg={bookshelfColors.white}
+			width={'40%'}
+			p={12}
+            height={'40rem'}
+            direction={'column'}
 		>
-			<Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-				<Stack align={'center'}>
-					<Heading fontSize={'4xl'}>Sign in to your account</Heading>
-					<Text fontSize={'lg'} color={'gray.600'}>
-						to enjoy all of our cool{' '}
-						<Link color={'blue.400'}>features</Link> ✌️
-					</Text>
-				</Stack>
-				<Box
-					rounded={'lg'}
-					bg={useColorModeValue('white', 'gray.700')}
-					boxShadow={'lg'}
-					p={8}
-				>
-					<Stack spacing={4}>
-						<FormControl id='email'>
-							<FormLabel>Email address</FormLabel>
-							<Input type='email' />
-						</FormControl>
-						<FormControl id='password'>
-							<FormLabel>Password</FormLabel>
-							<Input type='password' />
-						</FormControl>
-						<Stack spacing={10}>
-							<Stack
-								direction={{ base: 'column', sm: 'row' }}
-								align={'start'}
-								justify={'space-between'}
-							>
-								<Checkbox>Remember me</Checkbox>
-								<Link color={'blue.400'}>Forgot password?</Link>
-							</Stack>
-							<Button
-								bg={'blue.400'}
-								color={'white'}
-								_hover={{
-									bg: 'blue.500',
-								}}
-							>
-								Sign in
-							</Button>
-						</Stack>
+			<h4 className='text-heading-4 mt-4 mb-8 text-center'>Sign in</h4>
+            <form>
+			<Stack spacing={4}>
+				<FormControl id='username'>
+					<FormLabel fontSize='1rem' lineHeight='1.5rem'>
+						Username
+					</FormLabel>
+					<Input
+						type='text'
+						placeholder='Username'
+						borderColor={bookshelfColors.primary.light}
+						focusBorderColor={bookshelfColors.primary.main}
+						_hover={{ borderColor: bookshelfColors.primary.main }}
+						_placeholder={{
+							opacity: 1,
+							color: bookshelfColors.grey[4],
+						}}
+					/>
+				</FormControl>
+				<FormControl id='password'>
+					<FormLabel fontSize='1rem' lineHeight='1.5rem'>
+						Password
+					</FormLabel>
+					<Input
+						type='password'
+						placeholder='Password'
+						borderColor={bookshelfColors.primary.light}
+						focusBorderColor={bookshelfColors.primary.main}
+						_hover={{ borderColor: bookshelfColors.primary.main }}
+						_placeholder={{
+							opacity: 1,
+							color: bookshelfColors.grey[4],
+						}}
+					/>
+				</FormControl>
+				<Stack spacing={10}>
+					<Stack direction={'row'} justify={'space-between'}>
+						<Checkbox colorScheme='primary'>Remember me</Checkbox>
+						<Link>Forgot password?</Link>
 					</Stack>
-				</Box>
+					<Button
+						bg='primary.500'
+						color={'white'}
+                        fontWeight={'normal'}
+						_hover={{
+							bg: 'primary.600',
+						}}
+					>
+						Sign in
+					</Button>
+				</Stack>
 			</Stack>
+            </form>
+            <Text mt='auto' mb='0' textAlign={'center'}>Don't have an account? <Link color='secondary.500'>Sign up</Link></Text>
 		</Flex>
 	)
 }
