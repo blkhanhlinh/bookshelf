@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import bookshelfColors from '@/utils/colors'
+import bookshelfColors from '@/styles/colors'
 import { Stack } from '@chakra-ui/react'
 import useWindowSize from '@/utils/hooks/useWindowSize'
 import { InputGroup, Input, InputRightElement, Button } from '@chakra-ui/react'
@@ -21,7 +21,7 @@ const MainNav = () => {
 		<nav id='main-nav'>
 			{width >= 1024 ? (
 				<Stack
-					className='bg-background py-4 px-[5vw]'
+					className='bg-background py-4'
 					direction='row'
 					justify='space-between'
 					align='center'
@@ -39,36 +39,6 @@ const MainNav = () => {
 						justify='center'
 						align='center'
 					>
-						<div className='flex flex-row items-center'>
-							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								fill='none'
-								viewBox='0 0 24 24'
-								strokeWidth='1'
-								stroke={bookshelfColors.info}
-								className='w-12 h-12'
-							>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									d='M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z'
-								/>
-							</svg>
-							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								fill='none'
-								viewBox='0 0 24 24'
-								strokeWidth='1.5'
-								stroke={bookshelfColors.info}
-								className='w-3 h-3'
-							>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									d='M19.5 8.25l-7.5 7.5-7.5-7.5'
-								/>
-							</svg>
-						</div>
 						<InputGroup className='h-10'>
 							<Input
 								pr='4.0rem'
@@ -87,6 +57,7 @@ const MainNav = () => {
 									size='md'
 									type='submit'
 									bgColor={bookshelfColors.primary.main}
+									_hover={{bg: bookshelfColors.primary.dark}}
 								>
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
@@ -164,7 +135,7 @@ const MainNav = () => {
 				</Stack>
 			) : (
 				<Stack
-					className='bg-background py-4 px-[5vw]'
+					className='bg-background py-4'
 					direction='column'
 					justify='space-between'
 					align='center'

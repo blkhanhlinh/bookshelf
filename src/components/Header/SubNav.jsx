@@ -57,7 +57,7 @@ const SubNav = () => {
 	return (
 		<nav id='sub-nav'>
 			<Stack
-				className='h-12 bg-background py-3 px-[5vw]'
+				className='h-12 bg-background py-3'
 				direction='row'
 				spacing='auto'
 				justify='center'
@@ -67,7 +67,7 @@ const SubNav = () => {
 					<Link
 						href={category.href}
 						key={index}
-						className='text-regular-regular text-info'
+						className='text-info text-base'
 					>
 						{category.name}
 					</Link>
