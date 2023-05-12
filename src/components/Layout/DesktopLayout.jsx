@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 
-const Layout = ({ children }) => {
+const DesktopLayout = ({ children }) => {
     return (
         <>
             <Box maxWidth="1230px" m="auto">
@@ -9,4 +9,4 @@ const Layout = ({ children }) => {
         </>
     );
 }
-export default Layout;
+export default DesktopLayout;

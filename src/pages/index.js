@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import axios from 'axios'
 import { Header } from '@/components/Header'
-import Layout from '@/components/layout'
+import DesktopLayout from '@/components/Layout/DesktopLayout'
 
 export default function Home({ books }) {
 	return (
@@ -13,9 +13,9 @@ export default function Home({ books }) {
 				<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <title>Bookshelf</title>
 			</Head>
-      <Layout>
+      <DesktopLayout>
         <Header />
-      </Layout>
+      </DesktopLayout>
 			<h1>Bookshelf</h1>
 			{/* {books.map(book => (
         <div key={book.id}>
