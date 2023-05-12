@@ -108,6 +108,9 @@ module.exports = {
 			colors: {
 				...bookshelfColors,
 			},
+			rounded: {
+				'base': '12px',
+			},
 			typography: theme => ({
 				DEFAULT: {
 					css: {

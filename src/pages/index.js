@@ -3,6 +3,7 @@ import Image from 'next/image'
 import axios from 'axios'
 import { Header } from '@/components/Header'
 import DesktopLayout from '@/components/Layout/DesktopLayout'
+import Landing from '@/containers/home/landing'
 
 export default function Home({ books }) {
 	return (
@@ -15,8 +16,8 @@ export default function Home({ books }) {
 			</Head>
       <DesktopLayout>
         <Header />
+        <Landing />
       </DesktopLayout>
-			<h1>Bookshelf</h1>
 			{/* {books.map(book => (
         <div key={book.id}>
           <h2>{book.title}</h2>
@@ -24,8 +25,8 @@ export default function Home({ books }) {
           <Image src={book.image} alt={book.title} width={200} height={200} />
         </div>
       ))} */}
-		</>
-	)
+    </>
+  )
 }
 
 {/*export async function getServerSideProps() {
