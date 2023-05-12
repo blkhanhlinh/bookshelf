@@ -2,44 +2,47 @@ import { Stack } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import useWindowSize from '@/utils/hooks/useWindowSize'
+import { useRouter } from 'next/router'
 
 const SubNav = () => {
+	const router = useRouter()
+
 	const categories = [
 		{
 			name: 'Home',
-			href: '/',
+			path: '/',
 		},
 		{
 			name: 'Best Sellers',
-			href: '/',
+			path: '/best-sellers',
 		},
 		{
 			name: 'New Arrivals',
-			href: '/',
+			path: '/new-arrivals',
 		},
 		{
 			name: 'Coming Soon',
-			href: '/',
+			path: '/coming-soon',
 		},
 		{
 			name: 'Fiction',
-			href: '/',
+			path: '/fiction',
 		},
 		{
 			name: 'Business & Management',
-			href: '/',
+			path: '/business-management',
 		},
 		{
 			name: "Children's Books",
-			href: '/',
+			path: '/children-books',
 		},
 		{
 			name: 'Dictionaries & Languages',
-			href: '/',
+			path: '/dictionaries-languages',
 		},
 		{
 			name: 'Other Languages',
-			href: '/',
+			path: '/other-languages',
 		},
 	]
 
@@ -54,9 +57,9 @@ const SubNav = () => {
 			>
 				{categories.map((category, index) => (
 					<Link
-						href={category.href}
+						href={category.path}
 						key={index}
-						className='text-info text-base'
+						className={`text-base ${router.pathname === category.path ? 'text-primary-main' : 'hover:opacity-70'}`}
 					>
 						{category.name}
 					</Link>

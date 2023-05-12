@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    /* Header */
+    .menu-link {
+        @apply flex flex-col items-center justify-center;
+    }
+    .menu-link:hover {
+        @apply opacity-70;
+    }
+}
