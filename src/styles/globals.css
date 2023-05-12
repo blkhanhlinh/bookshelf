@@ -2,16 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer components {
+    /* Header */
+    .menu-link {
+        @apply flex flex-col items-center justify-center;
+    }
+    .menu-link:hover {
+        @apply opacity-70;
+    }
 }
