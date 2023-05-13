@@ -11,6 +11,9 @@ const theme = extendTheme({
 			500: '#FF9C28',
 			400: '#FFDCB2',
 		},
+		error: {
+			500: '#E75A51',
+		},
 	},
 })
 
