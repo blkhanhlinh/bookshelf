@@ -23,23 +23,27 @@ const RegisterForm = () => {
 	const [emailError, setEmailError] = useState(false)
 	const [usernameError, setUsernameError] = useState(false)
 	const [passwordError, setPasswordError] = useState(false)
+	const [repeatPasswordError, setRepeatPasswordError] = useState(false)
 
 	const validateEmail = () => {
-		if (email === '') {
+		const regex = /^([\w-]+)(\.[\w-]+)*@([\w-]+\.)+([a-zA-Z]{2,7})$/
+		if (email === '' || !regex.test(email)) {
 			setEmailError(true)
 		} else {
 			setEmailError(false)
 		}
 	}
 	const validateUsername = () => {
-		if (username === '') {
+		const regex = /^[a-zA-Z][\w]{4,}$/
+		if (username === '' || !regex.test(username)) {
 			setUsernameError(true)
 		} else {
 			setUsernameError(false)
 		}
 	}
 	const validatePassword = () => {
-		if (password === '') {
+		const regex = /^.{5,}$/
+		if (password === '' || !regex.test(password)) {
 			setPasswordError(true)
 		} else {
 			setPasswordError(false)
@@ -155,8 +159,15 @@ const RegisterForm = () => {
 							onChange={e => setPassword(e.target.value)}
 							onBlur={validatePassword}
 						/>
+						<FormErrorMessage>
+							Password must be at least 5 characters long
+						</FormErrorMessage>
 					</FormControl>
-					<FormControl id='repeat-password' isRequired>
+					<FormControl
+						id='repeat-password'
+						isInvalid={repeatPasswordError}
+						isRequired
+					>
 						<FormLabel fontSize='1rem' lineHeight='1.5rem'>
 							Repeat password
 						</FormLabel>
@@ -172,7 +183,13 @@ const RegisterForm = () => {
 								opacity: 1,
 								color: bookshelfColors.grey[4],
 							}}
+							onBlur={e =>
+								e.target.value !== password ||
+								(!e.target.value &&
+									setRepeatPasswordError(true))
+							}
 						/>
+						<FormErrorMessage>Password must match</FormErrorMessage>
 					</FormControl>
 					<Button
 						bg='primary.500'
