@@ -110,6 +110,9 @@ module.exports = {
 			},
 			rounded: {
 				'base': '12px',
+				'lg': '16px',
+				'xl': '24px',
+				'2xl': '32px',
 			},
 			typography: theme => ({
 				DEFAULT: {

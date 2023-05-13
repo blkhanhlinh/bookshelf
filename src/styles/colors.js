@@ -7,6 +7,7 @@ const bookshelfColors = {
     secondary: {
         main: '#FF9C28',
         light: '#FFDCB2',
+        dark: '#F38C12',
     },
     state: {
         success: '#24AF86',

@@ -10,10 +10,12 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import bookshelfColors from '@/styles/colors';
+import PromoCard from '@/components/promoCard';
 
 const Landing = () => {
     return (
-            <Stack minH={'90vh'} direction={{ base: 'column', md: 'row' }}>
+        <>    
+            <Stack minH={'640px'} direction={{ base: 'column', md: 'row' }}>
                 <Flex flex={1} align={'center'} justify={'space-between'}>
                     <Stack spacing={{ base: 8, md: 10 }} w={'full'} maxW={'lg'}>
                         <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
@@ -64,6 +66,8 @@ const Landing = () => {
                     </Flex>
                 </Flex>
             </Stack>
+            <PromoCard />
+        </>
     );
 }
 export default Landing;
