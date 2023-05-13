@@ -1,11 +1,13 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import axios from 'axios'
 import { Header } from '@/components/Header'
+import Footer from '@/components/Footer/Footer'
 import DesktopLayout from '@/components/Layout/DesktopLayout'
 import Landing from '@/containers/home/landing'
+import CardSlider from '@/components/CardSlider'
+import axios from 'axios'
+import { API_URL } from '@/constant/api'
 
-export default function Home({ books }) {
+export default function Home({books}) {
 	return (
 		<>
 			<Head>
@@ -17,24 +19,27 @@ export default function Home({ books }) {
       <DesktopLayout>
         <Header />
         <Landing />
+        <CardSlider books={books}/>
       </DesktopLayout>
-			{/* {books.map(book => (
-        <div key={book.id}>
-          <h2>{book.title}</h2>
-          <p>{book.author}</p>
-          <Image src={book.image} alt={book.title} width={200} height={200} />
-        </div>
-      ))} */}
+      <Footer />
     </>
   )
 }
-
-{/*export async function getServerSideProps() {
-  const { data } = await axios.get('http://127.0.0.1:8000/books')
-
-  return {
-    props: {
-      books: data.results,
-    },
+export async function getServerSideProps() {
+  const res = await axios.get(`${API_URL}/books`)
+  if(res.status === 200) {
+    const data = res.data
+    return {
+      props: {
+        books: data.results,
+      }
+    }
   }
-}*/}
+  // redirect to 500 page
+  return {
+    redirect: {
+      destination: '/500',
+      permanent: false,
+    }
+    }
+}

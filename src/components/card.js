@@ -1,13 +1,40 @@
-import React from "react";
+import {
+    Card,
+    CardHeader,
+    CardBody,
+    CardContainer,
+    Button,
+    Flex,
+    Heading,
+    Image,
+    Stack,
+    Text,
+    Container,
+    useBreakpointValue,
+} from '@chakra-ui/react';
+import React from 'react';
+import bookhelfColors from "@/styles/colors";
+import { FaStar } from "react-icons/fa";
+import StarRating from 'react-star-rating-component';
 
-const card = () => {
+const BookCard = ({book}) => {
     return (
-        <div className="h-[458px] w-[290px]">
-            <div className="flex">
-
-            </div>
-        </div>
+        <Card 
+            w="290px"
+            h="458px"
+            borderRadius="2xl"
+            border={`1px solid ${bookhelfColors.primary.main}`}
+        >
+            <CardBody id={book.id} color={bookhelfColors.info}>
+                <Flex flex={1}>
+                    <Image src={book.image} alt={book.title} />
+                </Flex>
+                <Stack>
+                    <Text className="text-medium-regular">{book.title}</Text>
+                    <Heading className="text-xl">{book.price}</Heading>
+                </Stack>
+            </CardBody>
+        </Card>
     )
 }
-
-export default card;
+export default BookCard;

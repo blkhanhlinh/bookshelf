@@ -10,7 +10,8 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import bookshelfColors from '@/styles/colors';
-import PromoCard from '@/components/promoCard';
+import PromoCards from '@/components/PromoCards';
+import CardSlider from '@/components/CardSlider';
 
 const Landing = () => {
     return (
@@ -66,7 +67,8 @@ const Landing = () => {
                     </Flex>
                 </Flex>
             </Stack>
-            <PromoCard />
+            <PromoCards />
+            <CardSlider />
         </>
     );
 }
