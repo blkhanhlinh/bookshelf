@@ -69,7 +69,7 @@ const LoginForm = () => {
 								color: bookshelfColors.grey[4],
 							}}
 							value={password}
-							onChange={e => setUsername(e.target.value)}
+							onChange={e => setPassword(e.target.value)}
 						/>
 					</FormControl>
 					<Stack spacing={10}>

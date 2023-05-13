@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import { Header } from '@/components/Header'
-import DesktopLayout from '@/components/Layout/DesktopLayout'
 import LoginForm from '@/components/Form/LoginForm'
+import { AuthLayout, DesktopLayout } from '@/components/Layout'
+import { Stack, Image } from '@chakra-ui/react'
 
 export default function Login() {
 	return (
@@ -17,8 +18,13 @@ export default function Login() {
 			</Head>
 			<DesktopLayout>
 				<Header showSubNav={false} />
-				<LoginForm />
 			</DesktopLayout>
+			<AuthLayout>
+				<Stack direction='row' alignItems='center' justifyContent='space-between'>
+					<LoginForm />
+					<Image src='/signin.svg' alt='signin' />
+				</Stack>
+			</AuthLayout>
 		</>
 	)
 }

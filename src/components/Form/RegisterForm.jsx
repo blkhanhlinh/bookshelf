@@ -191,17 +191,19 @@ const RegisterForm = () => {
 						/>
 						<FormErrorMessage>Password must match</FormErrorMessage>
 					</FormControl>
-					<Button
-						bg='primary.500'
-						color={'white'}
-						fontWeight={'normal'}
-						_hover={{
-							bg: 'primary.600',
-						}}
-					>
-						Sign up
-					</Button>
 				</Stack>
+				<Button
+					mt='16'
+					bg='primary.500'
+					color={'white'}
+					fontWeight={'normal'}
+					_hover={{
+						bg: 'primary.600',
+					}}
+					width={'100%'}
+				>
+					Sign up
+				</Button>
 			</form>
 			<Text mt='auto' mb='0' textAlign={'center'}>
 				Already have an account?{' '}
