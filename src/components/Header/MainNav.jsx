@@ -18,7 +18,7 @@ const MainNav = () => {
 		{
 			name: 'My cart',
 			path: '/my-cart',
-		}
+		},
 	]
 
 	return (
@@ -49,7 +49,9 @@ const MainNav = () => {
 							placeholder='Search by title, author,...'
 							borderColor={bookshelfColors.primary.light}
 							focusBorderColor={bookshelfColors.primary.main}
-							_hover={{borderColor: bookshelfColors.primary.main}}
+							_hover={{
+								borderColor: bookshelfColors.primary.main,
+							}}
 							_placeholder={{
 								opacity: 1,
 								color: bookshelfColors.grey[4],
@@ -62,7 +64,7 @@ const MainNav = () => {
 								size='md'
 								type='submit'
 								bgColor={bookshelfColors.primary.main}
-								_hover={{bg: bookshelfColors.primary.dark}}
+								_hover={{ bg: bookshelfColors.primary.dark }}
 							>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
@@ -99,9 +101,7 @@ const MainNav = () => {
 									d='M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'
 								/>
 							</svg>
-							<p className='text-small-regular'>
-								{menu[0].name}
-							</p>
+							<p className='text-small-regular'>{menu[0].name}</p>
 						</div>
 					</Link>
 					<Link href={menu[1].path}>
