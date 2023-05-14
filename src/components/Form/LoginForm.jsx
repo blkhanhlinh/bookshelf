@@ -13,12 +13,21 @@ import {
 	FormErrorMessage,
 	FormHelperText,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import NextLink from 'next/link'
+import { AuthContext } from '@/context/AuthContext'
 
 const LoginForm = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+
+	const { login } = useContext(AuthContext)
+
+	const handleSubmit = e => {
+		e.preventDefault()
+		// console.log(username, password)
+		login({username, password})
+	}
 
 	return (
 		<Flex
@@ -30,7 +39,7 @@ const LoginForm = () => {
 			direction={'column'}
 		>
 			<h4 className='text-heading-4 mt-4 mb-8 text-center'>Sign in</h4>
-			<form>
+			<form onSubmit={handleSubmit}>
 				<Stack spacing={4}>
 					<FormControl id='username'>
 						<FormLabel fontSize='1rem' lineHeight='1.5rem'>
@@ -88,6 +97,7 @@ const LoginForm = () => {
 							_hover={{
 								bg: 'primary.600',
 							}}
+							type='submit'
 						>
 							Sign in
 						</Button>
