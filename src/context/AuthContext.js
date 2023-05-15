@@ -2,7 +2,7 @@ import { createContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 
-export const AuthContext = createContext()
+const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null)
@@ -12,9 +12,6 @@ export const AuthProvider = ({ children }) => {
 	const router = useRouter()
 
 	const login = async ({ username, password }) => {
-		// console.log('login')
-		// console.log({ username, password })
-
 		const config = {
 			headers: {
 				Accept: 'application/json',
@@ -27,11 +24,30 @@ export const AuthProvider = ({ children }) => {
 			password,
 		}
 
-		const { data } = await axios.post(
-			'http://localhost:3000/api/login',
-			body,
-			config
-		)
+		try {
+			const { data:accessResponse } = await axios.post('http://localhost:3000/api/login', body, config)
+
+			if (accessResponse && accessResponse.user) {
+				setUser(accessResponse.user)
+			}
+
+			if (accessResponse && accessResponse.access) {
+				setAccessToken(accessResponse.access)
+			}
+
+			router.push('/')
+		} catch(error) {
+			if (error.response && error.response.data) {
+				setError(error.response.data.message)
+				return      
+			} else if (error.request) {
+				setError('Something went wrong')
+				return  
+			} else {
+				setError('Something went wrong')
+				return
+			}
+		}
 	}
 
 	return (
@@ -40,3 +56,5 @@ export const AuthProvider = ({ children }) => {
 		</AuthContext.Provider>
 	)
 }
+
+export default AuthContext

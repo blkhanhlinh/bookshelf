@@ -26,7 +26,6 @@ export default async (req, res) => {
 			)
 			accessToken = accessResponse.access
 		} catch (error) {
-			console.log(error)
 			if (error.response) {
 				console.error(error.response.data)
 				console.error(error.response.status)

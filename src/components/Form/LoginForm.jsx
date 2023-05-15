@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { useState, useContext } from 'react'
 import NextLink from 'next/link'
-import { AuthContext } from '@/context/AuthContext'
+import AuthContext from '@/context/AuthContext'
 
 const LoginForm = () => {
 	const [username, setUsername] = useState('')
@@ -25,7 +25,6 @@ const LoginForm = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault()
-		// console.log(username, password)
 		login({username, password})
 	}
 
