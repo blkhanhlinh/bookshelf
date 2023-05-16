@@ -125,7 +125,7 @@ const RegisterForm = () => {
 						<FormErrorMessage>
 							Username must be at least 5 characters long, start
 							with a letter and include only digits (0-9),
-							lowercase, uppercase letters and '_'
+							lowercase, uppercase letters and {`'_'`}
 						</FormErrorMessage>
 					</FormControl>
 					<FormControl

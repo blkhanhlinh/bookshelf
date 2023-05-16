@@ -58,7 +58,11 @@ const SubNav = () => {
 					<Link
 						href={category.path}
 						key={index}
-						className={`text-base ${router.pathname === category.path ? 'text-primary-main' : 'hover:opacity-70'}`}
+						className={`text-base ${
+							router.pathname === category.path
+								? 'text-primary-main'
+								: 'hover:opacity-70'
+						}`}
 					>
 						{category.name}
 					</Link>

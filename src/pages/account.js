@@ -19,7 +19,7 @@ export default function Login() {
 			</Head>
 			<DesktopLayout>
 				<Header />
-                My account
+				My account
 			</DesktopLayout>
 		</>
 	)

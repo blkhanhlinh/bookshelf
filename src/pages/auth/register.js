@@ -20,7 +20,11 @@ export default function Register() {
 				<Header showSubNav={false} />
 			</DesktopLayout>
 			<AuthLayout>
-				<Stack direction='row' alignItems='center' justifyContent='space-between'>
+				<Stack
+					direction='row'
+					alignItems='center'
+					justifyContent='space-between'
+				>
 					<RegisterForm />
 					<Image src='/signup.svg' alt='signup' />
 				</Stack>

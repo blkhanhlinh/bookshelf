@@ -1,7 +1,7 @@
 import axios from 'axios'
 import cookie from 'cookie'
 
-export default async (req, res) => {
+export default async function handler(req, res) {
 	if (req.method === 'POST') {
 		const { username, password } = req.body
 
@@ -40,7 +40,7 @@ export default async (req, res) => {
 					path: '/',
 				})
 			)
-			
+
 			const userConfig = {
 				headers: {
 					Authorization: 'Bearer ' + accessToken,
@@ -51,11 +51,8 @@ export default async (req, res) => {
 				'http://127.0.0.1:8000/api/user/',
 				userConfig
 			)
-			
+
 			res.status(200).json({ user: userData, access: accessToken })
-
-
-
 		} catch (error) {
 			if (error.response) {
 				return res

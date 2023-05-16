@@ -41,7 +41,6 @@ const LoginForm = () => {
 		}
 	}, [error])
 
-
 	const handleSubmit = e => {
 		e.preventDefault()
 		login(username, password)
@@ -123,7 +122,7 @@ const LoginForm = () => {
 				</Stack>
 			</form>
 			<Text mt='auto' mb='0' textAlign={'center'}>
-				Don't have an account?{' '}
+				Don{`'`}t have an account?{' '}
 				<Link as={NextLink} href='/auth/register' color='secondary.500'>
 					Sign up
 				</Link>

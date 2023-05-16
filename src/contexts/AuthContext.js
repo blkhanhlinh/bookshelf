@@ -54,7 +54,9 @@ export const AuthProvider = ({ children }) => {
 	const clearError = () => setError(null)
 
 	return (
-		<AuthContext.Provider value={{ user, accessToken, error, login, clearError }}>
+		<AuthContext.Provider
+			value={{ user, accessToken, error, login, clearError }}
+		>
 			{children}
 		</AuthContext.Provider>
 	)

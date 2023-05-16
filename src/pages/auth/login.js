@@ -20,7 +20,11 @@ export default function Login() {
 				<Header showSubNav={false} />
 			</DesktopLayout>
 			<AuthLayout>
-				<Stack direction='row' alignItems='center' justifyContent='space-between'>
+				<Stack
+					direction='row'
+					alignItems='center'
+					justifyContent='space-between'
+				>
 					<LoginForm />
 					<Image src='/signin.svg' alt='signin' />
 				</Stack>

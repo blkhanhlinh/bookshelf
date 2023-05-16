@@ -10,14 +10,17 @@ export default function Home({ books }) {
 		<>
 			<Head>
 				<meta charSet='utf-8' />
-				<meta	name='viewport'	content='initial-scale=1.0, width=device-width'/>
-				<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <title>Bookshelf</title>
+				<meta
+					name='viewport'
+					content='initial-scale=1.0, width=device-width'
+				/>
+				<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+				<title>Bookshelf</title>
 			</Head>
-      <DesktopLayout>
-        <Header />
-        <Landing />
-      </DesktopLayout>
+			<DesktopLayout>
+				<Header />
+				<Landing />
+			</DesktopLayout>
 			{/* {books.map(book => (
         <div key={book.id}>
           <h2>{book.title}</h2>
@@ -25,11 +28,12 @@ export default function Home({ books }) {
           <Image src={book.image} alt={book.title} width={200} height={200} />
         </div>
       ))} */}
-    </>
-  )
+		</>
+	)
 }
 
-{/*export async function getServerSideProps() {
+{
+	/*export async function getServerSideProps() {
   const { data } = await axios.get('http://127.0.0.1:8000/books')
 
   return {
@@ -37,4 +41,5 @@ export default function Home({ books }) {
       books: data.results,
     },
   }
-}*/}
+}*/
+}
