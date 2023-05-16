@@ -1,7 +1,6 @@
 import { Stack } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import useWindowSize from '@/utils/hooks/useWindowSize'
 import { useRouter } from 'next/router'
 
 const SubNav = () => {

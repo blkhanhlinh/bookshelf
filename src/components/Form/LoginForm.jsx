@@ -12,20 +12,39 @@ import {
 	Text,
 	FormErrorMessage,
 	FormHelperText,
+	useToast,
 } from '@chakra-ui/react'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import NextLink from 'next/link'
-import AuthContext from '@/context/AuthContext'
+import AuthContext from '@/contexts/AuthContext'
 
 const LoginForm = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 
-	const { login } = useContext(AuthContext)
+	const { login, error, clearError } = useContext(AuthContext)
+
+	const toast = useToast()
+
+	useEffect(() => {
+		if (error) {
+			toast({
+				title: 'An error occurred.',
+				description: error,
+				status: 'error',
+				duration: 2000,
+				isClosable: true,
+				position: 'bottom-right',
+				colorScheme: 'error',
+			})
+			clearError()
+		}
+	}, [error])
+
 
 	const handleSubmit = e => {
 		e.preventDefault()
-		login({username, password})
+		login(username, password)
 	}
 
 	return (

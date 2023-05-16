@@ -2,7 +2,6 @@ import Image from 'next/image'
 import bookshelfColors from '@/styles/colors'
 import { Stack } from '@chakra-ui/react'
 import { InputGroup, Input, InputRightElement, Button } from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 const MainNav = () => {
@@ -29,13 +28,15 @@ const MainNav = () => {
 				justify='space-between'
 				align='center'
 			>
-				<Image
-					src='/Logo.svg'
-					width={173}
-					height={40}
-					priority
-					alt='logo'
-				/>
+				<Link href='/'>
+					<Image
+						src='/Logo.svg'
+						width={173}
+						height={40}
+						priority
+						alt='logo'
+					/>
+				</Link>
 				<Stack
 					direction='row'
 					spacing='1rem'

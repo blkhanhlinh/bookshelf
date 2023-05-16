@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
 import { ChakraProvider } from '@chakra-ui/react'
 import theme from '@/styles/theme'
-import { AuthProvider } from '@/context/AuthContext'
+import { AuthProvider } from '@/contexts/AuthContext'
 
 export default function App({ Component, pageProps }) {
 	return (

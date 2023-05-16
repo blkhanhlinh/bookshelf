@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 
@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
 
 	const router = useRouter()
 
-	const login = async ({ username, password }) => {
+	const login = async (username, password) => {
 		const config = {
 			headers: {
 				Accept: 'application/json',
@@ -25,7 +25,11 @@ export const AuthProvider = ({ children }) => {
 		}
 
 		try {
-			const { data:accessResponse } = await axios.post('http://localhost:3000/api/login', body, config)
+			const { data: accessResponse } = await axios.post(
+				'http://localhost:3000/api/login',
+				body,
+				config
+			)
 
 			if (accessResponse && accessResponse.user) {
 				setUser(accessResponse.user)
@@ -36,13 +40,10 @@ export const AuthProvider = ({ children }) => {
 			}
 
 			router.push('/')
-		} catch(error) {
+		} catch (error) {
 			if (error.response && error.response.data) {
 				setError(error.response.data.message)
-				return      
-			} else if (error.request) {
-				setError('Something went wrong')
-				return  
+				return
 			} else {
 				setError('Something went wrong')
 				return
@@ -50,8 +51,10 @@ export const AuthProvider = ({ children }) => {
 		}
 	}
 
+	const clearError = () => setError(null)
+
 	return (
-		<AuthContext.Provider value={{ user, accessToken, error, login }}>
+		<AuthContext.Provider value={{ user, accessToken, error, login, clearError }}>
 			{children}
 		</AuthContext.Provider>
 	)
