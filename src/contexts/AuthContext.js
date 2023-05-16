@@ -31,13 +31,8 @@ export const AuthProvider = ({ children }) => {
 				config
 			)
 
-			if (accessResponse && accessResponse.user) {
-				setUser(accessResponse.user)
-			}
-
-			if (accessResponse && accessResponse.access) {
-				setAccessToken(accessResponse.access)
-			}
+			setUser(accessResponse.user)
+			setAccessToken(accessResponse.access)
 
 			router.push('/')
 		} catch (error) {
@@ -53,9 +48,30 @@ export const AuthProvider = ({ children }) => {
 
 	const clearError = () => setError(null)
 
+	const logout = async () => {
+		try {
+			const { data } = await axios.post(
+				'http://localhost:3000/api/logout'
+			)
+			setUser(null)
+			setAccessToken(null)
+
+			console.log(data.message)
+			router.push('/')
+		} catch (error) {
+			if (error.response & error.response.data) {
+				setError(error.response.data.message)
+				return
+			} else {
+				setError('Something went wrong')
+				return
+			}
+		}
+	}
+
 	return (
 		<AuthContext.Provider
-			value={{ user, accessToken, error, login, clearError }}
+			value={{ user, accessToken, error, login, clearError, logout }}
 		>
 			{children}
 		</AuthContext.Provider>

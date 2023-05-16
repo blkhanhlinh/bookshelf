@@ -1,8 +1,10 @@
 import Image from 'next/image'
 import bookshelfColors from '@/styles/colors'
-import { Stack } from '@chakra-ui/react'
+import { Box, Stack } from '@chakra-ui/react'
 import { InputGroup, Input, InputRightElement, Button } from '@chakra-ui/react'
 import Link from 'next/link'
+import { useContext } from 'react'
+import AuthContext from '@/contexts/AuthContext'
 
 const MainNav = () => {
 	const menu = [
@@ -19,6 +21,21 @@ const MainNav = () => {
 			path: '/my-cart',
 		},
 	]
+
+	const { user, logout } = useContext(AuthContext)
+
+	function openAccountLink() {
+		document.getElementById('account-link').classList.remove('invisible')
+	}
+
+	function hideAccountLink() {
+		document.getElementById('account-link').classList.add('invisible')
+	}
+
+	const handleLogout = () => {
+		logout()
+		console.log(user)
+	}
 
 	return (
 		<nav id='main-nav'>
@@ -86,25 +103,63 @@ const MainNav = () => {
 					</InputGroup>
 				</Stack>
 				<Stack direction='row' align='center' spacing='2rem'>
-					<Link href={menu[0].path}>
-						<div className='menu-link'>
-							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								fill='none'
-								viewBox='0 0 24 24'
-								strokeWidth='1.5'
-								stroke={bookshelfColors.info}
-								className='w-7 h-7'
+					<Box className='relative' onMouseOver={openAccountLink}>
+						<Link href={menu[0].path}>
+							<div className='menu-link'>
+								<svg
+									xmlns='http://www.w3.org/2000/svg'
+									fill='none'
+									viewBox='0 0 24 24'
+									strokeWidth='1.5'
+									stroke={bookshelfColors.info}
+									className='w-7 h-7'
+								>
+									<path
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										d='M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'
+									/>
+								</svg>
+								<p className='text-small-regular'>
+									{menu[0].name}
+								</p>
+							</div>
+						</Link>
+						<Stack
+							id='account-link'
+							className='invisible before:content-[""] absolute z-20 -translate-x-6 translate-y-2'
+							bgColor='white'
+							width='185px'
+							rounded='lg'
+							px='6'
+							py='3'
+							spacing='3'
+							shadow={
+								'-4px 16px 32px -4px rgba(255, 156, 40, 0.08), 4px -4px 16px 2px rgba(255, 156, 40, 0.05)'
+							}
+							onMouseLeave={hideAccountLink}
+						>
+							<Link
+								href='/account'
+								className='text-regular-regular hover:text-primary-main'
 							>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									d='M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'
-								/>
-							</svg>
-							<p className='text-small-regular'>{menu[0].name}</p>
-						</div>
-					</Link>
+								My account
+							</Link>
+							<Link
+								href='/purchase'
+								className='text-regular-regular hover:text-primary-main'
+							>
+								My purchase
+							</Link>
+							<Link
+								href=''
+								onClick={handleLogout}
+								className='text-regular-regular hover:text-primary-main'
+							>
+								Logout
+							</Link>
+						</Stack>
+					</Box>
 					<Link href={menu[1].path}>
 						<div className='menu-link'>
 							<svg
