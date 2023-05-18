@@ -11,56 +11,35 @@ export default async function handler(req, res) {
 				.json({ message: 'Username or password is missing' })
 		}
 
-		const config = {
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-		}
-
-		const body = {
-			username,
-			password,
-		}
-
-		try {
-			const { data: accessResponse } = await axios.post(
+		await axios
+			.post(
 				'http://127.0.0.1:8000/api/token/',
-				body,
-				config
-			)
-			let accessToken = accessResponse.access
-			res.setHeader(
-				'Set-Cookie',
-				cookie.serialize('refresh', accessResponse.refresh, {
-					httpOnly: true,
-					secure: false,
-					sameSite: 'strict',
-					maxAge: 60 * 60 * 24,
-					path: '/',
-				})
-			)
-
-			const userConfig = {
-				headers: {
-					Authorization: 'Bearer ' + accessToken,
+				{
+					username,
+					password,
 				},
-			}
-
-			const { data: userData } = await axios.get(
-				'http://127.0.0.1:8000/api/user/',
-				userConfig
+				{
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					},
+				}
 			)
-
-			res.status(200).json({ user: userData, access: accessToken })
-		} catch (error) {
-			if (error.response) {
-				return res
-					.status(401)
-					.json({ message: error.response.data.detail })
-			}
-			return res.status(500).json({ message: 'Something went wrong' })
-		}
+			.then(response => {
+				res.status(200).json({
+					access: response.data.access,
+					refresh: response.data.refresh,
+				})
+			})
+			.catch(error => {
+				if (error.response && error.response.data) {
+					res.status(401).json({
+						message: error.response.data.detail,
+					})
+				} else {
+					res.status(500).json({ message: 'Something went wrong' })
+				}
+			})
 	} else {
 		res.setHeader('Allow', ['POST'])
 		res.status(405).json({ message: `Method ${req.method} is not allowed` })
