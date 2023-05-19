@@ -3,7 +3,7 @@ import { Header } from '@/components/Header'
 import Footer from '@/components/Footer/Footer'
 import DesktopLayout from '@/components/Layout/DesktopLayout'
 import Landing from '@/containers/home/landing'
-import CardSlider from '@/components/CardSlider'
+import Section from '@/containers/home/section'
 import axios from 'axios'
 import { API_URL } from '@/constant/api'
 
@@ -22,7 +22,7 @@ export default function Home({ books }) {
 			<DesktopLayout>
 				<Header />
 				<Landing />
-				<CardSlider books={books} />
+				<Section books={books} />
 			</DesktopLayout>
 			<Footer />
 		</>

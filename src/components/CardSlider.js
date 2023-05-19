@@ -1,29 +1,23 @@
-import { Heading, SimpleGrid, Spinner, Stack } from '@chakra-ui/react'
+'use client';
+import { Heading, SimpleGrid, Stack } from '@chakra-ui/react'
 import axios from 'axios'
 import React from 'react'
 import BookCard from './BookCard'
 
-const CardSlider = ({ books }) => {
-    if (!books) {
-        return (
-            <div>
-              <Spinner size="xl" />
-            </div>
-        );
-    }
-  
-    if (books.length === 0) {
-      return <p>No books found</p>;
-    }
-  
+const CardSlider = ({books}) => {
     return (
-      <SimpleGrid columns={{ sm: 1, md: 4 }} marginBottom={'80px'}>
-        {books.map((book) => (
-          <BookCard key={book.id} book={book} />
-        ))}
-      </SimpleGrid>
-    );
-  };
-  
+        <Stack>
+        {books && books.length !== 0 ? (
+            <SimpleGrid columns={{ sm: 1, md: 4 }} spacing={6}>
+            {books.map(book => (
+                <BookCard key={book.id} book={book} />
+            ))}
+            </SimpleGrid>
+        ) : (
+            <p>No books found</p>
+        )}
+        </Stack>
+    )
+}
 
 export default CardSlider

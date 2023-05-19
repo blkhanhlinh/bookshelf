@@ -92,7 +92,6 @@ const Landing = () => {
 				</Flex>
 			</Stack>
 			<PromoCards />
-			<CardSlider />
 		</>
 	)
 }
