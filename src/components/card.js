@@ -14,8 +14,9 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import bookhelfColors from '@/styles/colors'
-import { FaStar } from 'react-icons/fa'
-import StarRating from 'react-star-rating-component'
+// import { FaStar } from 'react-icons/fa'
+// import StarRating from 'react-star-rating-component'
+
 
 const BookCard = ({ book }) => {
 	return (
@@ -27,7 +28,7 @@ const BookCard = ({ book }) => {
 		>
 			<CardBody id={book.id} color={bookhelfColors.info}>
 				<Flex flex={1}>
-					<Image src={book.image} alt={book.title} />
+					<Image src={book.cover} alt={book.title} />
 				</Flex>
 				<Stack>
 					<Text className='text-medium-regular'>{book.title}</Text>
