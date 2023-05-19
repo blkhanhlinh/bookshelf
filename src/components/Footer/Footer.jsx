@@ -97,7 +97,7 @@ const InfoIcon = () => {
 			<path
 				d='M11.9502 8H12.0502V8.1H11.9502V8Z'
 				stroke='white'
-				stroke-width='2'
+				strokeWidth='2'
 				strokeLinecap='round'
 				strokeLinejoin='round'
 			/>
