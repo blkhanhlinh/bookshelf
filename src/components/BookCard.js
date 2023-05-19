@@ -17,7 +17,6 @@ import bookhelfColors from '@/styles/colors'
 // import { FaStar } from 'react-icons/fa'
 // import StarRating from 'react-star-rating-component'
 
-
 const BookCard = ({ book }) => {
 	return (
 		<Card

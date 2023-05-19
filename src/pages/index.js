@@ -29,20 +29,29 @@ export default function Home({ books }) {
 	)
 }
 export async function getServerSideProps() {
-	const res = await axios.get(`${API_URL}/books`)
- 	if (res.status === 200) {
- 		const data = res.data
- 		return {
- 			props: {
- 				books: data.results,
- 			},
- 		}
- 	}
- 	// redirect to 500 page
- 	return {
- 		redirect: {
- 			destination: '/500',
- 			permanent: false,
- 		},
- 	}
+	try{
+		const res = await axios.get(`${API_URL}/books`)
+		if (res.status === 200) {
+			const data = res.data
+			return {
+				props: {
+					books: data.results,
+				},
+			}
+		}
+		// redirect to 500 page
+		return {
+			redirect: {
+				destination: '/500',
+				permanent: false,
+			},
+		}
+	} catch (error) {
+		console.error("Error of catching books: ", error)
+		return {
+			props: {
+				books: [],
+			}
+		}
+	}
 }
