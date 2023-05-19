@@ -2,10 +2,16 @@ import Head from 'next/head'
 import { Header } from '@/components/Header'
 import { DesktopLayout } from '@/components/Layout'
 import { useContext } from 'react'
-import AuthContext from '@/contexts/AuthContext'
+import AuthContext from '@/utils/contexts/AuthContext'
 import { useRouter } from 'next/router'
+import withAuth from '@/components/HOC/withAuth'
+import useAuthStore from '@/utils/stores/useAuthStore'
 
-export default function Login() {
+function Account() {
+
+	const { user } = useAuthStore()
+	console.log(user)
+
 	return (
 		<>
 			<Head>
@@ -20,7 +26,10 @@ export default function Login() {
 			<DesktopLayout>
 				<Header />
 				My account
+				{user && <h1>{user.username}</h1>}
 			</DesktopLayout>
 		</>
 	)
 }
+
+export default withAuth(Account, 'protected')

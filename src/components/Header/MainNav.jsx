@@ -4,7 +4,8 @@ import { Box, Stack } from '@chakra-ui/react'
 import { InputGroup, Input, InputRightElement, Button } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useContext } from 'react'
-import AuthContext from '@/contexts/AuthContext'
+import AuthContext from '@/utils/contexts/AuthContext'
+import useAuthStore from '@/utils/stores/useAuthStore'
 
 const MainNav = () => {
 	const menu = [
@@ -22,7 +23,7 @@ const MainNav = () => {
 		},
 	]
 
-	const { user, logout } = useContext(AuthContext)
+	const { user, logout } = useAuthStore()
 
 	function openAccountLink() {
 		document.getElementById('account-link').classList.remove('invisible')
@@ -34,7 +35,6 @@ const MainNav = () => {
 
 	const handleLogout = () => {
 		logout()
-		console.log(user)
 	}
 
 	return (

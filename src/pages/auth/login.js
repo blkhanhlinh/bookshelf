@@ -3,8 +3,9 @@ import { Header } from '@/components/Header'
 import LoginForm from '@/components/Form/LoginForm'
 import { AuthLayout, DesktopLayout } from '@/components/Layout'
 import { Stack, Image } from '@chakra-ui/react'
+import withAuth from '@/components/HOC/withAuth'
 
-export default function Login() {
+function Login() {
 	return (
 		<>
 			<Head>
@@ -32,3 +33,5 @@ export default function Login() {
 		</>
 	)
 }
+
+export default withAuth(Login, 'auth')

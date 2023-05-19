@@ -1,7 +1,6 @@
 import bookshelfColors from '@/styles/colors'
 import {
 	Flex,
-	Box,
 	FormControl,
 	FormLabel,
 	Input,
@@ -10,19 +9,19 @@ import {
 	Link,
 	Button,
 	Text,
-	FormErrorMessage,
-	FormHelperText,
 	useToast,
 } from '@chakra-ui/react'
 import { useState, useContext, useEffect } from 'react'
 import NextLink from 'next/link'
-import AuthContext from '@/contexts/AuthContext'
+import AuthContext from '@/utils/contexts/AuthContext'
+import useAuthStore from '@/utils/stores/useAuthStore'
 
 const LoginForm = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+	const [isRemember, setIsRemember] = useState(false)
 
-	const { login, error, clearError } = useContext(AuthContext)
+	const { login, error, clearError } = useAuthStore()
 
 	const toast = useToast()
 
@@ -43,7 +42,7 @@ const LoginForm = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault()
-		login(username, password)
+		login(username, password, isRemember)
 	}
 
 	return (
@@ -100,7 +99,7 @@ const LoginForm = () => {
 					</FormControl>
 					<Stack spacing={10}>
 						<Stack direction={'row'} justify={'space-between'}>
-							<Checkbox colorScheme='primary'>
+							<Checkbox colorScheme='primary' value={isRemember} onChange={e => setIsRemember(e.target.checked)}>
 								Remember me
 							</Checkbox>
 							<Link as={NextLink} href='/auth/forgot-password'>
