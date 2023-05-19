@@ -127,26 +127,32 @@ module.exports = {
 						h1: {
 							color: theme('colors.info'),
 							fontWeight: 700,
+							fontSize: '56px',
 						},
 						h2: {
 							color: theme('colors.info'),
 							fontWeight: 700,
+							fontSize: '48px',
 						},
 						h3: {
 							color: theme('colors.info'),
 							fontWeight: 700,
+							fontSize: '40px',
 						},
 						h4: {
 							color: theme('colors.info'),
 							fontWeight: 700,
+							fontSize: '32px',
 						},
 						h5: {
 							color: theme('colors.info'),
 							fontWeight: 700,
+							fontSize: '24px',
 						},
 						h6: {
 							color: theme('colors.info'),
 							fontWeight: 700,
+							fontSize: '20px',
 						},
 					},
 				},
