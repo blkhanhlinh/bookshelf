@@ -21,23 +21,33 @@ export default function Home({ books }) {
 				<Header />
 				<Landing />
 			</DesktopLayout>
-			{/* {books.map(book => (
-        <div key={book.id}>
-          <h2>{book.title}</h2>
-          <p>{book.author}</p>
-          <Image src={book.image} alt={book.title} width={200} height={200} />
-        </div>
-      ))} */}
+			{books &&
+				books.map(book => (
+					<div key={book.id}>
+						<h2>{book.title}</h2>
+						<p>{book.author}</p>
+						<Image
+							src={book.cover}
+							alt={book.title}
+							width={200}
+							height={200}
+						/>
+					</div>
+				))}
 		</>
 	)
 }
 
-// 	export async function getServerSideProps() {
-//   const { data } = await axios.get('http://127.0.0.1:8000/books')
+export async function getServerSideProps() {
+	const { data } = await axios.get('http://127.0.0.1:8000/books/', {
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+		},
+	})
 
-//   return {
-//     props: {
-//       books: data.results,
-//     },
-//   }
-// }
+	return {
+		props: {
+			books: data?.results,
+		},
+	}
+}

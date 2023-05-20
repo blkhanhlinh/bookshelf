@@ -1,16 +1,12 @@
 import Head from 'next/head'
 import { Header } from '@/components/Header'
 import { DesktopLayout } from '@/components/Layout'
-import { useContext } from 'react'
-import AuthContext from '@/utils/contexts/AuthContext'
 import { useRouter } from 'next/router'
+import useAuthStore from '@/stores/useAuthStore'
 import withAuth from '@/components/HOC/withAuth'
-import useAuthStore from '@/utils/stores/useAuthStore'
 
 function Account() {
-
-	const { user } = useAuthStore()
-	console.log(user)
+	const { access } = useAuthStore((state) => ({ access: state.accessToken }))
 
 	return (
 		<>
@@ -26,7 +22,7 @@ function Account() {
 			<DesktopLayout>
 				<Header />
 				My account
-				{user && <h1>{user.username}</h1>}
+				{access && <h1>Logged in</h1>}
 			</DesktopLayout>
 		</>
 	)

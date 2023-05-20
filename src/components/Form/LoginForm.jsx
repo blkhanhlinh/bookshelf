@@ -10,20 +10,25 @@ import {
 	Button,
 	Text,
 	useToast,
+	Spinner,
 } from '@chakra-ui/react'
-import { useState, useContext, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import NextLink from 'next/link'
-import AuthContext from '@/utils/contexts/AuthContext'
-import useAuthStore from '@/utils/stores/useAuthStore'
+import useAuthStore from '@/stores/useAuthStore'
+import axios from 'axios'
+import { useRouter } from 'next/router'
 
 const LoginForm = () => {
+	const router = useRouter()
+
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
-	const [isRemember, setIsRemember] = useState(false)
-
-	const { login, error, clearError } = useAuthStore()
+	const [isRememberMe, setIsRememberMe] = useState(false)
 
 	const toast = useToast()
+	const { error } = useAuthStore(state => ({
+		error: state.error,
+	}))
 
 	useEffect(() => {
 		if (error) {
@@ -36,13 +41,59 @@ const LoginForm = () => {
 				position: 'bottom-right',
 				colorScheme: 'error',
 			})
-			clearError()
+			useAuthStore.getState().clearError()
 		}
 	}, [error])
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault()
-		login(username, password, isRemember)
+		useAuthStore.getState().onLoading()
+		try {
+			const { data: tokenData } = await axios.post(
+				'http://127.0.0.1:8000/api/token/',
+				{ username, password },
+				{
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json',
+					},
+				}
+			)
+
+			console.log('hello')
+			console.log(tokenData)
+			if (tokenData) {
+				const accessToken = tokenData.access
+				const refreshToken = tokenData.refresh
+				await axios
+					.get('http://127.0.0.1:8000/api/user/', {
+						headers: {
+							Authorization: `Bearer ${accessToken}`,
+						},
+					})
+					.then(res => {
+						const user = res.data
+						useAuthStore
+							.getState()
+							.login(
+								accessToken,
+								refreshToken,
+								user,
+								isRememberMe
+							)
+						setTimeout(() => {
+							useAuthStore.getState().offLoading()
+						}, 5000)
+						router.replace('/')
+					})
+			}
+		} catch (err) {
+			console.log(err)
+			useAuthStore.getState().offLoading()
+			useAuthStore
+				.getState()
+				.setError(err.response?.data.detail || 'Something went wrong')
+		}
 	}
 
 	return (
@@ -99,7 +150,13 @@ const LoginForm = () => {
 					</FormControl>
 					<Stack spacing={10}>
 						<Stack direction={'row'} justify={'space-between'}>
-							<Checkbox colorScheme='primary' value={isRemember} onChange={e => setIsRemember(e.target.checked)}>
+							<Checkbox
+								colorScheme='primary'
+								value={isRememberMe}
+								onChange={e =>
+									setIsRememberMe(e.target.checked)
+								}
+							>
 								Remember me
 							</Checkbox>
 							<Link as={NextLink} href='/auth/forgot-password'>
