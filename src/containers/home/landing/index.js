@@ -11,7 +11,6 @@ import {
 import Link from 'next/link'
 import bookshelfColors from '@/styles/colors'
 import PromoCards from '@/components/PromoCards'
-import CardSlider from '@/components/CardSlider'
 
 const Landing = () => {
 	return (

@@ -146,17 +146,17 @@ const Footer = () => {
 					</Stack>
 					<Stack spacing={2} align={'flex-start'}>
 						<ListHeader>Services</ListHeader>
-						{services.map(service => {
+						{services.map((service, index) => {
 							return (
-								<Link key={service.title} href={service.link}>{service.title}</Link>
+								<Link key={index} href={service.link}>{service.title}</Link>
 							)
 						})}
 					</Stack>
 					<Stack spacing={2} align={'flex-start'}>
 						<ListHeader>Product Categories</ListHeader>
-						{categories.map(category => {
+						{categories.map((category, index) => {
 							return (
-								<Link href={category.link}>
+								<Link key={index} href={category.link}>
 									{category.title}
 								</Link>
 							)
@@ -170,9 +170,9 @@ const Footer = () => {
 								Signup
 							</Link>
 						</HStack>
-						{account.map(account => {
+						{account.map((account, index) => {
 							return (
-								<Link href={account.link}>{account.title}</Link>
+								<Link key={index} href={account.link}>{account.title}</Link>
 							)
 						})}
 					</Stack>

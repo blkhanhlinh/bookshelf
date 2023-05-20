@@ -43,8 +43,8 @@ const MainNav = () => {
 				/>
 		},
 		{
-			name: 'Favorite',
-			path: '/favorite',
+			name: 'Wishlist',
+			path: '/Wishlist',
 			icon: 
 				<path
 					strokeLinecap='round'

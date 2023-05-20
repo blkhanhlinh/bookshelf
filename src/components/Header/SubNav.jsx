@@ -21,7 +21,7 @@ const SubNav = () => {
 					<Link
 						href={category.path}
 						key={index}
-						className={`text-base ${
+						className={`text-sm ${
 							router.pathname === category.path
 								? 'text-primary-main'
 								: 'hover:text-primary-main'
