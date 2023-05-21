@@ -1,22 +1,27 @@
 import bookshelfColors from '@/styles/colors'
 import {
 	Flex,
-	Box,
 	FormControl,
 	FormLabel,
 	Input,
-	Checkbox,
 	Stack,
 	Link,
 	Button,
 	Text,
 	FormErrorMessage,
 	FormHelperText,
+	useToast,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import NextLink from 'next/link'
+import axios from 'axios'
+import useAuthStore from '@/stores/useAuthStore'
+import { useRouter } from 'next/router'
 
 const RegisterForm = () => {
+	const router = useRouter()
+	const toast = useToast()
+
 	const [email, setEmail] = useState('')
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
@@ -24,6 +29,25 @@ const RegisterForm = () => {
 	const [usernameError, setUsernameError] = useState(false)
 	const [passwordError, setPasswordError] = useState(false)
 	const [repeatPasswordError, setRepeatPasswordError] = useState(false)
+
+	const { error } = useAuthStore(state => ({
+		error: state.error,
+	}))
+
+	useEffect(() => {
+		if (error) {
+			toast({
+				title: 'An error occurred.',
+				description: error,
+				status: 'error',
+				duration: 2000,
+				isClosable: true,
+				position: 'bottom-right',
+				colorScheme: 'error',
+			})
+			useAuthStore.getState().clearError()
+		}
+	}, [error])
 
 	const validateEmail = () => {
 		const regex = /^([\w-]+)(\.[\w-]+)*@([\w-]+\.)+([a-zA-Z]{2,7})$/
@@ -50,6 +74,31 @@ const RegisterForm = () => {
 		}
 	}
 
+	const handleSubmit = async e => {
+		e.preventDefault()
+		useAuthStore.getState().onLoading()
+		try {
+			await axios.post(
+				'http://127.0.0.1:8000/api/register/',
+				{ email, username, password },
+				{
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json',
+					},
+				}
+			)
+
+			router.replace('/auth/login')
+		} catch (err) {
+			console.log(err)
+			useAuthStore.getState().offLoading()
+			useAuthStore
+				.getState()
+				.setError(err.response?.data.detail || 'Something went wrong')
+		}
+	}
+
 	return (
 		<Flex
 			borderRadius={'2xl'}
@@ -60,7 +109,7 @@ const RegisterForm = () => {
 			direction={'column'}
 		>
 			<h4 className='text-heading-4 mt-4 mb-8 text-center'>Sign up</h4>
-			<form>
+			<form onSubmit={handleSubmit}>
 				<Stack spacing={4}>
 					<FormControl id='email' isInvalid={emailError} isRequired>
 						<FormLabel fontSize='1rem' lineHeight='1.5rem'>
@@ -184,9 +233,9 @@ const RegisterForm = () => {
 								color: bookshelfColors.grey[4],
 							}}
 							onBlur={e =>
-								e.target.value !== password ||
-								(!e.target.value &&
-									setRepeatPasswordError(true))
+								e.target.value != password
+									? setRepeatPasswordError(true)
+									: setRepeatPasswordError(false)
 							}
 						/>
 						<FormErrorMessage>Password must match</FormErrorMessage>
@@ -201,6 +250,7 @@ const RegisterForm = () => {
 						bg: 'primary.600',
 					}}
 					width={'100%'}
+					type='submit'
 				>
 					Sign up
 				</Button>
