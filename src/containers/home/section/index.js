@@ -24,6 +24,7 @@ const links = [
 ]
 
 const Section = ({ books }) => {
+	console.log(books)
 	return (
 		<>
 			{links.map(link => {

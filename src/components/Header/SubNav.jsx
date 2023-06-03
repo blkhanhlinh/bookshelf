@@ -14,7 +14,7 @@ const SubNav = () => {
 				className='h-12 bg-background py-3'
 				direction='row'
 				spacing='auto'
-				justify='center'
+				justify='space-between'
 				align='center'
 			>
 				{categories.map((category, index) => (

@@ -1,18 +1,54 @@
-'use client'
 import { Heading, SimpleGrid, Stack } from '@chakra-ui/react'
-import axios from 'axios'
-import React from 'react'
+import React, { useRef } from 'react'
 import BookCard from './BookCard'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const CardSlider = ({ books }) => {
+	const ref = useRef({});
+
+	const next = () => {
+	  ref.current.slickNext();
+	};
+  
+	const previous = () => {
+	  ref.current.slickPrev();
+	};
+	const settings = {
+		dots: true,
+		infinite: true,
+		speed: 500,
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		autoplay: true,
+		autoplaySpeed: 1500,
+		
+		responsive: [
+			{
+				breakpoint: 992,
+				settings: {
+					arrows: false,
+					slidesToShow: 2,
+					slidesToScroll: 1
+				}
+			},
+			{
+				breakpoint: 768,
+				settings: {
+					arrows: false,
+					slidesToShow: 1,
+					slidesToScroll: 1
+				}
+			}
+		]
+	};
 	return (
-		<Stack>
-			<SimpleGrid columns={{ sm: 1, md: 4 }} spacing={10}>
-				{books.map((book) => (
-					<BookCard key={book.id} book={book} />
-				))}
-			</SimpleGrid>
-		</Stack>
+		<Slider ref={ref} {...settings}>
+			{books.map((book) => (
+				<BookCard key={book.id} book={book} />
+			))}
+		</Slider>
 	)
 }
 
