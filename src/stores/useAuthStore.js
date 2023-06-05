@@ -46,9 +46,6 @@ const useAuthStore = create(set => ({
 			}
 		}
 	},
-	register: async (username, email, password) => {
-
-	}
 }))
 
 export default useAuthStore
