@@ -19,8 +19,7 @@ const CartButton = () => {
 	const [isHover, setIsHover] = useState(false)
 	return (
 		<Box
-			onMouseEnter={() => setIsHover(true)}
-			onMouseLeave={() => setIsHover(false)}
+			alignSelf={"center"}
 		>
 			<Button
 				background={'none'}
@@ -30,6 +29,8 @@ const CartButton = () => {
 					background: bookshelfColors.primary.main,
 					color: bookshelfColors.white,
 				}}
+				onMouseEnter={() => setIsHover(true)}
+				onMouseLeave={() => setIsHover(false)}
 			>
 				<Box display={'flex'} px={8}>
 					<svg
@@ -149,8 +150,8 @@ const BookCard = ({ book }) => {
 					numReviews={1000} // temporarily
 				/>
 			</HStack>
-			<Box className='flex justify-between items-center'>
-				<CartButton />
+			<CartButton className="self-center"/>
+			{/* <Box className='flex justify-between items-center'>
 				<Box alignSelf={'center'}>
 					<Link onClick={() => handleClick()}>
 						<svg
@@ -173,7 +174,7 @@ const BookCard = ({ book }) => {
 						</svg>
 					</Link>
 				</Box>
-			</Box>
+			</Box> */}
 		</Card>
 	)
 }
