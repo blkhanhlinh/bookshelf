@@ -8,13 +8,6 @@ import 'slick-carousel/slick/slick-theme.css';
 const CardSlider = ({ books }) => {
 	const ref = useRef({});
 
-	const next = () => {
-	  ref.current.slickNext();
-	};
-  
-	const previous = () => {
-	  ref.current.slickPrev();
-	};
 	const settings = {
 		dots: true,
 		infinite: true,
@@ -43,12 +36,14 @@ const CardSlider = ({ books }) => {
 			}
 		]
 	};
+	const limitedBooks = books.slice(0, 6);
+
 	return (
-		<Slider ref={ref} {...settings}>
-			{books.map((book) => (
-				<BookCard key={book.id} book={book} />
-			))}
-		</Slider>
+	  <Slider ref={ref} {...settings} className='pb-5'>
+		{limitedBooks.map((book) => (
+		  <BookCard key={book.id} book={book} />
+		))}
+	  </Slider>
 	)
 }
 

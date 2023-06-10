@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Header } from '@/components/Header'
 import Footer from '@/components/Footer/Footer'
-import DesktopLayout from '@/components/Layout/DesktopLayout'
+import DesktopLayout from '../components/Layout/DesktopLayout'
 import Landing from '@/containers/home/landing'
 import Section from '@/containers/home/section'
 import axios from 'axios'
@@ -20,11 +20,9 @@ export default function Home({ books }) {
 				<title>Bookshelf</title>
 			</Head>
 			<DesktopLayout>
-				<Header />
 				<Landing />
 				<Section books={books} />
 			</DesktopLayout>
-			<Footer />
 		</>
 	)
 }
@@ -35,7 +33,7 @@ export async function getServerSideProps() {
 			const data = res.data
 			return {
 				props: {
-					books: data.results,
+					books: data,
 				},
 			}
 		}
