@@ -214,7 +214,7 @@ const Footer = () => {
 					textAlign={{ base: 'center', md: 'center' }}
 				>
 					<Text paddingY={3} className='text-regular'>
-						© 2023 Bookshelf. All Rights Reserved.
+						© {new Date().getFullYear()} Bookshelf. All Rights Reserved.
 					</Text>
 				</Container>
 			</Box>

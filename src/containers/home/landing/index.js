@@ -9,10 +9,12 @@ import {
 	useBreakpointValue,
 } from '@chakra-ui/react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import bookshelfColors from '@/styles/colors'
 import PromoCards from '@/components/PromoCards'
 
 const Landing = () => {
+	const router = useRouter()
 	return (
 		<>
 			<Stack minH={'640px'} direction={{ base: 'column', md: 'row' }}>
@@ -70,6 +72,7 @@ const Landing = () => {
 										/>
 									</svg>
 								}
+								onClick={() => router.push('/all-categories')}
 							>
 								Explore Bookshelf
 							</Button>

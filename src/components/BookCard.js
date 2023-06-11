@@ -11,16 +11,17 @@ import {
 	Link,
 	Center,
 } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import bookshelfColors from '@/styles/colors'
 import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '@/redux/cart.slice'
 
-const CartButton = () => {
+const CartButton = ({ book }) => {
 	const [isHover, setIsHover] = useState(false)
+	const dispatch = useDispatch()
 	return (
-		<Box
-			alignSelf={"center"}
-		>
+		<Box alignSelf={'center'}>
 			<Button
 				background={'none'}
 				border={`1px solid ${bookshelfColors.primary.main}`}
@@ -31,6 +32,7 @@ const CartButton = () => {
 				}}
 				onMouseEnter={() => setIsHover(true)}
 				onMouseLeave={() => setIsHover(false)}
+				onClick={() => dispatch(addToCart(book))}
 			>
 				<Box display={'flex'} px={8}>
 					<svg
@@ -67,7 +69,7 @@ const CartButton = () => {
 	)
 }
 
-const Rating = ({ rating, numReviews}) => {
+const Rating = ({ rating, numReviews }) => {
 	return (
 		<Flex alignItems='center'>
 			{Array(5)
@@ -98,7 +100,13 @@ const Rating = ({ rating, numReviews}) => {
 					}
 					return <BsStar key={i} style={{ marginLeft: '1' }} />
 				})}
-			<Box flex={1} as='span' ml='2' color={bookshelfColors.info} fontSize='sm'>
+			<Box
+				flex={1}
+				as='span'
+				ml='2'
+				color={bookshelfColors.info}
+				fontSize='sm'
+			>
 				&#40;{rating === 0 ? 0 : numReviews}&#41;
 			</Box>
 		</Flex>
@@ -106,15 +114,6 @@ const Rating = ({ rating, numReviews}) => {
 }
 
 const BookCard = ({ book }) => {
-	const [isClicked, setIsClicked] = useState(false)
-	const handleClick = () => {
-		setIsClicked(!isClicked);
-	  };
-	
-	  useEffect(() => {
-		setIsClicked(false);
-	  }, []);	
-	
 	return (
 		<Card
 			maxW={'sm'}
@@ -150,7 +149,7 @@ const BookCard = ({ book }) => {
 					numReviews={1000} // temporarily
 				/>
 			</HStack>
-			<CartButton className="self-center"/>
+			<CartButton book={book} className='self-center' />
 			{/* <Box className='flex justify-between items-center'>
 				<Box alignSelf={'center'}>
 					<Link onClick={() => handleClick()}>

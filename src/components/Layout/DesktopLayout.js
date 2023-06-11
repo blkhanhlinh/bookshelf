@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import { Header } from '../Header'
-import Footer from '../Footer/Footer'
+import { Footer } from '../Footer'
 
 const DesktopLayout = ({ children }) => {
 	return (
