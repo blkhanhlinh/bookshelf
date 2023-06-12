@@ -1,7 +1,6 @@
 import { Box, SimpleGrid } from '@chakra-ui/react'
 import { Children, isValidElement, useMemo } from 'react'
-import BookCard from '../HomeSlider/BookCard'
-
+import BookCard from './BookCard'
 const Grid = props => {
 	const columns = useMemo(() => {
 		const count = Children.toArray(props.children).filter(
@@ -34,11 +33,6 @@ const BookGrid = ({ books }) => {
 		<Box
 			maxW='7xl'
 			mx='auto'
-			px={{
-				base: '4',
-				md: '8',
-				lg: '12',
-			}}
 			py={{
 				base: '6',
 				md: '8',
@@ -47,7 +41,7 @@ const BookGrid = ({ books }) => {
 		>
 			<Grid>
 				{books.map(book => (
-					<BookCard key={book.id} book={book} isHomepage={false} className="w-[210px] h-[350px]"/>
+					<BookCard key={book.id} book={book} />
 				))}
 			</Grid>
 		</Box>

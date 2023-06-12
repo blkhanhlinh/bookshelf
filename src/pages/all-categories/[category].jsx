@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import DesktopLayout from '@/components/Layout/DesktopLayout'
 import { API_URL } from '@/constant/api'
 import { BookGrid } from '@/components/Books'
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs'
+import DesktopLayout from '@/components/Layout/DesktopLayout'
 
 const CategoryPage = ({ books }) => {
 	const router = useRouter()

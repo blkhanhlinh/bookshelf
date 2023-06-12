@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import DesktopLayout from '../components/Layout/DesktopLayout'
 import Landing from '@/containers/home/landing'
 import Section from '@/containers/home/section'
 import axios from 'axios'
 import { API_URL } from '@/constant/api'
+import DesktopLayout from '@/components/Layout/DesktopLayout'
 
 export default function Home({ books }) {
 	return (
