@@ -5,7 +5,7 @@ import { BsTrash } from 'react-icons/bs'
 
 const ItemCart = ({ item, removeItem }) => {
 	return (
-		<div className='flex items-center justify-between gap-4 p-4'>
+		<div className='flex items-center justify-between gap-2 p-5'>
 			<Image
 				src={item.cover}
 				alt={item.title}
@@ -14,15 +14,15 @@ const ItemCart = ({ item, removeItem }) => {
 				className='rounded-sm'
 			/>
 			<div className='flex flex-col flex-1 leading-normal'>
-				<strong className='text-info text-medium-bold'>
+				<strong className='text-info text-regular-bold'>
 					{item.title}
 				</strong>
 				<p className='text-info flex gap-1'>
 					<span className='text-primary-main text-regular-bold'>
-						{item.unit_price} x {item.quantity}
+						{item.unit_price}₫ x {item.quantity}
 					</span>
 					<span className='text-primary-main text-regular-bold'>
-						= {item.unit_price * item.quantity}
+						= {item.unit_price * item.quantity}₫
 					</span>
 				</p>
 			</div>

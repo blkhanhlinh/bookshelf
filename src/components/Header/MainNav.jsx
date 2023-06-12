@@ -53,13 +53,15 @@ const MainNav = () => {
 				justify='space-between'
 				align='center'
 			>
-				<Image
-					src='/Logo.svg'
-					width={173}
-					height={40}
-					priority
-					alt='logo'
-				/>
+				<Link href="/">
+					<Image
+						src='/Logo.svg'
+						width={173}
+						height={40}
+						priority
+						alt='logo'
+					/>
+				</Link>
 				<Stack
 					direction='row'
 					spacing='1rem'

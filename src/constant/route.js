@@ -51,10 +51,6 @@ export const account = [
         path: '/order-history',
         title: 'Order History',
     },
-    {
-        path: '/wishlist',
-        title: 'Wishlist',
-    }
 ]
 
 export const services = [

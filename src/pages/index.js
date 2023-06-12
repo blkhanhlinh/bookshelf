@@ -1,6 +1,4 @@
 import Head from 'next/head'
-import { Header } from '@/components/Header'
-import Footer from '@/components/Footer/Footer'
 import DesktopLayout from '../components/Layout/DesktopLayout'
 import Landing from '@/containers/home/landing'
 import Section from '@/containers/home/section'
@@ -19,7 +17,7 @@ export default function Home({ books }) {
 				<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 				<title>Bookshelf</title>
 			</Head>
-			<DesktopLayout>
+			<DesktopLayout isHomepage={true}>
 				<Landing />
 				<Section books={books} />
 			</DesktopLayout>
