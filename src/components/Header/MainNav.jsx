@@ -6,9 +6,15 @@ import Link from 'next/link'
 import axios from 'axios'
 import { redirect } from 'next/dist/server/api-utils'
 import { useRouter } from 'next/router'
+import { logout } from '@/redux/auth/authSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 const MainNav = () => {
 	const router = useRouter()
+
+	const { userInfo, userToken } = useSelector((state) => state.auth)
+	const dispatch = useDispatch()
 
 	const menu = [
 		{
@@ -25,7 +31,6 @@ const MainNav = () => {
 		},
 	]
 
-
 	function openAccountLink() {
 		document.getElementById('account-link').classList.remove('invisible')
 	}
@@ -36,23 +41,7 @@ const MainNav = () => {
 
 	const handleLogout = (e) => {
 		e.preventDefault()
-		try {
-			const token = sessionStorage.getItem('token')
-			axios.post('http://127.0.0.1:8000/api/logout/', {
-				headers: {
-					'Authorization': `Token ${token}`,
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
-				},
-			}).then((res) => {
-				console.log(res)
-				sessionStorage.removeItem('token')
-				sessionStorage.removeItem('user_id')
-				router.push('/')
-		})
-		} catch (error) {
-			console.log(error)
-		}
+		dispatch(logout())
 	}
 
 	return (
@@ -169,13 +158,15 @@ const MainNav = () => {
 							>
 								My purchase
 							</Link>
-							<Link
-								href=''
-								onClick={handleLogout}
-								className='text-regular-regular hover:text-primary-main'
-							>
-								Logout
-							</Link>
+							{userInfo? (
+								<Link
+									href=''
+									onClick={handleLogout}
+									className='text-regular-regular hover:text-primary-main'
+								>
+									Logout
+								</Link>
+							) : ''}
 						</Stack>
 					</Box>
 					<Link href={menu[1].path}>

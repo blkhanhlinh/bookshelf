@@ -3,7 +3,8 @@ import { Header } from '@/components/Header'
 import LoginForm from '@/components/Auth/LoginForm'
 import { AuthLayout, DesktopLayout } from '@/components/Layout'
 import { Stack, Image } from '@chakra-ui/react'
-import withAuth from '@/components/HOC/withAuth'
+
+
 
 function Login() {
 	return (

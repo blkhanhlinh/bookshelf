@@ -2,8 +2,14 @@ import Head from 'next/head'
 import { Header } from '@/components/Header'
 import { DesktopLayout } from '@/components/Layout'
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
 
 function Account() {
+	const { userInfo, userToken } = useSelector((state) => state.auth)
+	const dispatch = useDispatch()
+
+	console.log(userInfo)
+
 
 	return (
 		<>
@@ -18,8 +24,7 @@ function Account() {
 			</Head>
 			<DesktopLayout>
 				<Header />
-				My account
-				{access && <h1>Logged in</h1>}
+				<p>{userInfo?.username}</p>
 			</DesktopLayout>
 		</>
 	)

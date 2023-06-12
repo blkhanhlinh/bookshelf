@@ -14,39 +14,28 @@ import {
 } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import NextLink from 'next/link'
-import axios from 'axios'
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { userLogin } from '@/redux/auth/authActions'
+
 
 const LoginForm = () => {
 	const router = useRouter()
+	const dispatch = useDispatch()
 
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 	const [isRememberMe, setIsRememberMe] = useState(false)
 
+	const { loading, userInfo, error } = useSelector((state) => state.auth)
+
 	const handleSubmit = async e => {
 		e.preventDefault()
-		try {
-			await axios.post(
-				'http://127.0.0.1:8000/api/login/',
-				{ username, password },
-				{
-					headers: {
-						'Content-Type': 'application/json',
-						Accept: 'application/json',
-					},
-				}
-			).then((res) => {
-				console.log(res)
-				sessionStorage.setItem('token', res.data.token)
-				sessionStorage.setItem('user_id', res.data.user_id)
-				router.push('/')
-			})
-		}
-		catch (error) {
-			console.log(error)
-		}
+		dispatch(userLogin({ username, password}))
+		router.push('/')
 	}
+
+	console.log(userInfo)
 
 	return (
 		<Flex
