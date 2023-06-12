@@ -113,7 +113,7 @@ const Rating = ({ rating, numReviews }) => {
 	)
 }
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, isHomepage = true}) => {
 	return (
 		<Card
 			maxW={'sm'}
@@ -149,7 +149,7 @@ const BookCard = ({ book }) => {
 					numReviews={1000} // temporarily
 				/>
 			</HStack>
-			<CartButton book={book} className='self-center' />
+			{isHomepage && <CartButton book={book} className='self-center' />}
 			{/* <Box className='flex justify-between items-center'>
 				<Box alignSelf={'center'}>
 					<Link onClick={() => handleClick()}>

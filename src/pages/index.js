@@ -1,9 +1,13 @@
 import Head from 'next/head'
 import Landing from '@/containers/home/landing'
 import Section from '@/containers/home/section'
-import axios from 'axios'
-import { API_URL } from '@/constant/api'
 import DesktopLayout from '@/components/Layout/DesktopLayout'
+import { getBooksFromAPI } from "@/api";
+
+export async function getServerSideProps() {
+    const books = await getBooksFromAPI();
+    return books;
+}
 
 export default function Home({ books }) {
 	return (
@@ -23,31 +27,4 @@ export default function Home({ books }) {
 			</DesktopLayout>
 		</>
 	)
-}
-export async function getServerSideProps() {
-	try{
-		const res = await axios.get(`${API_URL}/books`)
-		if (res.status === 200) {
-			const data = res.data
-			return {
-				props: {
-					books: data,
-				},
-			}
-		}
-		// redirect to 500 page
-		return {
-			redirect: {
-				destination: '/500',
-				permanent: false,
-			},
-		}
-	} catch (error) {
-		console.error("Error of catching books: ", error)
-		return {
-			props: {
-				books: [],
-			}
-		}
-	}
 }
