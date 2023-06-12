@@ -3,6 +3,7 @@ import axios from 'axios'
 import DesktopLayout from '@/components/Layout/DesktopLayout'
 import { API_URL } from '@/constant/api'
 import { BookGrid } from '@/components/Books'
+import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs'
 
 const CategoryPage = ({ books }) => {
 	const router = useRouter()
@@ -11,10 +12,8 @@ const CategoryPage = ({ books }) => {
 
 	return (
 		<DesktopLayout isHomepage={false}>
-			<div>
-				<h1>Home / All Categories / {categoryName}</h1>
-				<BookGrid books={books}/>
-			</div>
+			<Breadcrumbs category={categoryName} />
+			<BookGrid books={books}/>
 		</DesktopLayout>
 	)
 }
