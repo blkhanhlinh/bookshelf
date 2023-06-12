@@ -38,16 +38,16 @@ export default function Home({ books }) {
 	)
 }
 
-export async function getServerSideProps() {
-	const { data } = await axios.get('http://127.0.0.1:8000/books/', {
-		headers: {
-			'Access-Control-Allow-Origin': '*',
-		},
-	})
+// export async function getServerSideProps() {
+// 	const { data } = await axios.get('http://127.0.0.1:8000/books/', {
+// 		headers: {
+// 			'Access-Control-Allow-Origin': '*',
+// 		},
+// 	})
 
-	return {
-		props: {
-			books: data?.results,
-		},
-	}
-}
+// 	return {
+// 		props: {
+// 			books: data,
+// 		},
+// 	}
+// }

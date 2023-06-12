@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { Header } from '@/components/Header'
-import RegisterForm from '@/components/Form/RegisterForm'
+import RegisterForm from '@/components/Auth/RegisterForm'
 import { AuthLayout, DesktopLayout } from '@/components/Layout'
 import { Stack, Image } from '@chakra-ui/react'
 

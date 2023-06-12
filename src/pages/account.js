@@ -2,11 +2,8 @@ import Head from 'next/head'
 import { Header } from '@/components/Header'
 import { DesktopLayout } from '@/components/Layout'
 import { useRouter } from 'next/router'
-import useAuthStore from '@/stores/useAuthStore'
-import withAuth from '@/components/HOC/withAuth'
 
 function Account() {
-	const { access } = useAuthStore((state) => ({ access: state.accessToken }))
 
 	return (
 		<>
@@ -28,4 +25,4 @@ function Account() {
 	)
 }
 
-export default withAuth(Account, 'protected')
+export default Account

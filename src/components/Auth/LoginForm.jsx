@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import NextLink from 'next/link'
-import useAuthStore from '@/stores/useAuthStore'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
@@ -25,32 +24,11 @@ const LoginForm = () => {
 	const [password, setPassword] = useState('')
 	const [isRememberMe, setIsRememberMe] = useState(false)
 
-	const toast = useToast()
-	const { error } = useAuthStore(state => ({
-		error: state.error,
-	}))
-
-	useEffect(() => {
-		if (error) {
-			toast({
-				title: 'An error occurred.',
-				description: error,
-				status: 'error',
-				duration: 2000,
-				isClosable: true,
-				position: 'bottom-right',
-				colorScheme: 'error',
-			})
-			useAuthStore.getState().clearError()
-		}
-	}, [error])
-
 	const handleSubmit = async e => {
 		e.preventDefault()
-		useAuthStore.getState().onLoading()
 		try {
-			const { data: tokenData } = await axios.post(
-				'http://127.0.0.1:8000/api/token/',
+			await axios.post(
+				'http://127.0.0.1:8000/api/login/',
 				{ username, password },
 				{
 					headers: {
@@ -58,41 +36,15 @@ const LoginForm = () => {
 						Accept: 'application/json',
 					},
 				}
-			)
-
-			console.log('hello')
-			console.log(tokenData)
-			if (tokenData) {
-				const accessToken = tokenData.access
-				const refreshToken = tokenData.refresh
-				await axios
-					.get('http://127.0.0.1:8000/api/user/', {
-						headers: {
-							Authorization: `Bearer ${accessToken}`,
-						},
-					})
-					.then(res => {
-						const user = res.data
-						useAuthStore
-							.getState()
-							.login(
-								accessToken,
-								refreshToken,
-								user,
-								isRememberMe
-							)
-						setTimeout(() => {
-							useAuthStore.getState().offLoading()
-						}, 5000)
-						router.replace('/')
-					})
-			}
-		} catch (err) {
-			console.log(err)
-			useAuthStore.getState().offLoading()
-			useAuthStore
-				.getState()
-				.setError(err.response?.data.detail || 'Something went wrong')
+			).then((res) => {
+				console.log(res)
+				sessionStorage.setItem('token', res.data.token)
+				sessionStorage.setItem('user_id', res.data.user_id)
+				router.push('/')
+			})
+		}
+		catch (error) {
+			console.log(error)
 		}
 	}
 

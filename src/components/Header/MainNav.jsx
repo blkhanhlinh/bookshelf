@@ -3,9 +3,13 @@ import bookshelfColors from '@/styles/colors'
 import { Box, Stack } from '@chakra-ui/react'
 import { InputGroup, Input, InputRightElement, Button } from '@chakra-ui/react'
 import Link from 'next/link'
-import useAuthStore from '@/stores/useAuthStore'
+import axios from 'axios'
+import { redirect } from 'next/dist/server/api-utils'
+import { useRouter } from 'next/router'
 
 const MainNav = () => {
+	const router = useRouter()
+
 	const menu = [
 		{
 			name: 'Account',
@@ -30,8 +34,25 @@ const MainNav = () => {
 		document.getElementById('account-link').classList.add('invisible')
 	}
 
-	const handleLogout = () => {
-		useAuthStore.getState().logout()
+	const handleLogout = (e) => {
+		e.preventDefault()
+		try {
+			const token = sessionStorage.getItem('token')
+			axios.post('http://127.0.0.1:8000/api/logout/', {
+				headers: {
+					'Authorization': `Token ${token}`,
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+				},
+			}).then((res) => {
+				console.log(res)
+				sessionStorage.removeItem('token')
+				sessionStorage.removeItem('user_id')
+				router.push('/')
+		})
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	return (
