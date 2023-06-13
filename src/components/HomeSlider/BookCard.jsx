@@ -118,7 +118,7 @@ const BookCard = ({ book, isHomepage = true}) => {
 		<Card
 			maxW={'sm'}
 			w='290px'
-			h='458px'
+			h= {isHomepage ? '458px' : '100%'}
 			borderRadius='2xl'
 			border={`1px solid ${bookshelfColors.primary.main}`}
 			flex={1}
@@ -143,7 +143,7 @@ const BookCard = ({ book, isHomepage = true}) => {
 					{book.unit_price} ₫
 				</Heading>
 			</Stack>
-			<HStack py={4}>
+			<HStack py={isHomepage ? 6 : 4}>
 				<Rating
 					rating={5} // temporarily
 					numReviews={1000} // temporarily

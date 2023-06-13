@@ -4,11 +4,11 @@ export const categories = [
         title: 'All Categories',
     },
     {
-        path: '/best-sellers',
+        path: '/all-categories/best-sellers',
         title: 'Best Sellers',
     },
     {
-        path: '/new-arrivals',
+        path: '/all-categories/new-arrivals',
         title: 'New Arrivals',
     },
     {

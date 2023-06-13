@@ -30,7 +30,7 @@ export default function WidgetCart() {
 				{cart.length && (
 					<Box mt={1} mx={5} paddingTop={4} marginLeft="auto" float="right">
 						<Text color={bookshelfColors.secondary.main} className='text-medium-bold'>
-							Total: {getTotalPrice()}₫
+							Total: {getTotalPrice()} ₫
 						</Text>
 					</Box>
 				)}

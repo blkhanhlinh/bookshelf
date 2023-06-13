@@ -21,7 +21,9 @@ const CategoryPage = ({ books }) => {
 export default CategoryPage
 
 const categoryMap = {
-	fiction: 'Fiction',
+	'best-sellers': 'Best Sellers',
+	'new-arrivals': 'New Arrivals', 
+	'fiction': 'Fiction',
 	'business-management': 'Business & Management',
 	'self-help': 'Self Help',
 	'children-books': "Children's Books",

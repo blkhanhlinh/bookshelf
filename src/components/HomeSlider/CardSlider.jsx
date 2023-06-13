@@ -27,7 +27,7 @@ const CardSlider = ({ books }) => {
 				},
 			},
 			{
-				breakpoint: 768,
+				breakpoint: 640,
 				settings: {
 					arrows: false,
 					slidesToShow: 1,
@@ -37,7 +37,7 @@ const CardSlider = ({ books }) => {
 		],
 	}
 	const limitedBooks = books.slice(0, 6)
-
+	
 	return (
 		<Slider ref={ref} {...settings} className='pb-5'>
 			{limitedBooks.map(book => (

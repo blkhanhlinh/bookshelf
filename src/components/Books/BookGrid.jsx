@@ -7,7 +7,8 @@ const Grid = props => {
 			isValidElement
 		).length
 		return {
-			base: Math.min(2, count),
+			base: Math.min(1, count),
+			sm: Math.min(2, count),
 			xl: Math.min(3, count),
 		}
 	}, [props.children])
@@ -31,14 +32,12 @@ const BookGrid = ({ books }) => {
 	return (
 		<Box
 			width={"fit-content"}
-			mx='auto'
 			py={{
 				base: '6',
-				md: '8',
-				lg: '12',
+				lg: '8',
 			}}
 		>
-			<Grid>
+			<Grid columnGap={6}>
 				{books.map(book => (
 					<BookCard key={book.id} book={book} isHomepage={false}/>
 				))}
