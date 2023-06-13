@@ -1,5 +1,6 @@
 import { configureStore, combineReducers, ThunkAction } from '@reduxjs/toolkit'
 import authReducer from './auth/authSlice'
+import { cartReducer } from "./cart.slice"
 import { createWrapper } from "next-redux-wrapper"
 import { persistStore, persistReducer, FLUSH,
     REHYDRATE,
@@ -8,16 +9,16 @@ import { persistStore, persistReducer, FLUSH,
     PURGE,
     REGISTER, } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import thunk from 'redux-thunk'
 
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    cart: cartReducer,
 })
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['auth']
+    whitelist: ['auth', 'cart']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

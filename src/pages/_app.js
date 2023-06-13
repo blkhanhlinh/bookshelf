@@ -1,6 +1,4 @@
-import bookstore from '@/redux/bookstore'
 import '@/styles/globals.css'
-import { ChakraProvider } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
 import { wrapper } from '@/redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
