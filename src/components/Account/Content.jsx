@@ -14,7 +14,6 @@ import {
 import bookshelfColors from '@/styles/colors'
 import ProfileContent from './Profile/ProfileContent'
 import AddressList from './Addresses/AddressList'
-import PurchasesList from './Purchases/PurchasesList'
 
 function Content() {
 	const router = useRouter()
@@ -25,7 +24,6 @@ function Content() {
 				{
 					'/account/profile': <ProfileContent />,
 					'/account/addresses': <AddressList />,
-					'/purchases': <PurchasesList />,
 				}[router.pathname]
 			}
 		</>
