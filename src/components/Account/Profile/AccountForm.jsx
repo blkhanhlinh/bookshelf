@@ -16,6 +16,7 @@ import {
 	FormHelperText,
 	useToast,
 	InputGroup,
+	Textarea,
 } from '@chakra-ui/react'
 import bookshelfColors from '@/styles/colors'
 
@@ -27,6 +28,7 @@ function AccountForm() {
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
 	const [phoneNum, setPhoneNum] = useState('')
+	const [address, setAddress] = useState('')
 
 	const handleSubmit = async e => {
 		e.preventDefault()
@@ -85,6 +87,18 @@ function AccountForm() {
 							type='text'
 							placeholder='phone-num'
 							value={phoneNum}
+                            w={360}
+						/>
+					</FormControl>
+					<FormControl id='address' className='flex flex-row justify-between items-center'>
+						<FormLabel fontSize='1rem' lineHeight='1.5rem'>
+							Address
+						</FormLabel>
+						<Textarea
+							resize='none'
+							type='text'
+							placeholder='address'
+							value={address}
                             w={360}
 						/>
 					</FormControl>

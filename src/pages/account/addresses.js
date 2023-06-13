@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import Sidebar from '@/components/Account/SideBar'
 import { Flex, Spacer } from "@chakra-ui/react"
-import ProfileContent from '@/components/Account/ProfileContent'
+import Content from '@/components/Account/Content'
 
 
-function Profile() {
+function Addresses() {
 	const { userInfo, userToken, loading, error } = useSelector((state) => state.auth)
 	const dispatch = useDispatch()
 
@@ -23,17 +23,17 @@ function Profile() {
 					content='initial-scale=1.0, width=device-width'
 				/>
 				<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-				<title>My account</title>
+				<title>My Addresses</title>
 			</Head>
             <DesktopLayout isHomepage={false}>
                 <Flex minW="max-content">
                     <Sidebar />
 					<Spacer />
-                    <ProfileContent />
+                    <Content />
                 </Flex>
             </DesktopLayout>
 		</>
 	)
 }
 
-export default Profile
+export default Addresses

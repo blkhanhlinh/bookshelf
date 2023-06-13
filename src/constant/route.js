@@ -40,11 +40,11 @@ export const categories = [
 
 export const account = [
     {
-        path: '/my-profile',
+        path: '/account/profile',
         title: 'My Account',
     },
     {
-        path: '/my-purchases',
+        path: '/purchases',
         title: 'My purchases',
     },
     {
@@ -55,15 +55,15 @@ export const account = [
 
 export const accountDetails = [
     {
-        path: '/my-profile',
+        path: '/account/profile',
         title: 'Profile',
     },
     {
-        path: '/my-addresses',
+        path: '/account/addresses',
         title: 'Addresses',
     },
     {
-        path: '/change-password',
+        path: '/account/change-password',
         title: 'Change Password',
     },
 ]

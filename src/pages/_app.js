@@ -5,18 +5,12 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 import { Spinner } from '@chakra-ui/react'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import theme from '@/styles/theme'
 
 
 function App({ Component, pageProps }) {
 	const { store } = wrapper.useWrappedStore(pageProps)
 	const persistor = persistStore(store)
-
-	const theme = extendTheme({
-		fonts: {
-			heading: 'Nunito Sans',
-			body: 'Nunito Sans',
-		},
-	})
 
 	const Loading = () => {
 		return (

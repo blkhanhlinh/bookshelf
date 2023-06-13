@@ -28,7 +28,7 @@ const SideBar = () => {
 		<Box
 			h='full'
 			w='290px'
-			bg='white'
+			// bg='white'
 			rounded='xl'
 			mt={{
 				base: '6',
