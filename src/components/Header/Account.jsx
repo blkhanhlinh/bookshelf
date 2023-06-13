@@ -41,10 +41,10 @@ const Account = () => {
 					}
 				>
 					<Link
-						href='/account'
+						href='/my-profile'
 						className='text-regular-regular hover:text-primary-main'
 					>
-						My account
+						My profile
 					</Link>
 					<Link
 						href='/purchase'
@@ -83,7 +83,7 @@ const Account = () => {
 			<PopoverTrigger>
 				<Flex direction='column' align='center'>
 					<MenuItem
-						path='/account'
+						path='/my-profile'
 						name='Account'
 						icon={
 							<path

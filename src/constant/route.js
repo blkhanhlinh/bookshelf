@@ -40,16 +40,31 @@ export const categories = [
 
 export const account = [
     {
-        path: '/change-address',
-        title: 'Change Address',
+        path: '/my-profile',
+        title: 'My Account',
     },
     {
-        path: '/account-details',
-        title: 'Account Details',
+        path: '/my-purchases',
+        title: 'My purchases',
     },
     {
-        path: '/order-history',
-        title: 'Order History',
+        path: '/recent-view',
+        title: 'Recent View',
+    },
+]
+
+export const accountDetails = [
+    {
+        path: '/my-profile',
+        title: 'Profile',
+    },
+    {
+        path: '/my-addresses',
+        title: 'Addresses',
+    },
+    {
+        path: '/change-password',
+        title: 'Change Password',
     },
 ]
 

@@ -3,13 +3,14 @@ import { Header } from '../Header'
 import { Footer } from '../Footer'
 
 const DesktopLayout = ({ children, isHomepage, showFooter = true }) => {
+	console.log(showFooter)
 	return (
 		<>
 			<Box maxWidth='1230px' m='auto' className='font-sans text-info'>
 				<Header showSubNav={isHomepage}/>
 				<main >{children}</main>
 			</Box>
-			{showFooter ?? <Footer />}
+			{showFooter && <Footer />}
 		</>
 	)
 }

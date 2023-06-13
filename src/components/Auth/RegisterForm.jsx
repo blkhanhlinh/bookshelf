@@ -209,11 +209,11 @@ const RegisterForm = () => {
 				</Stack>
 				<Button
 					mt='16'
-					bg='primary.500'
+					bg={bookshelfColors.primary.main}
 					color={'white'}
 					fontWeight={'normal'}
 					_hover={{
-						bg: 'primary.600',
+						bg: bookshelfColors.primary.dark,
 					}}
 					width={'100%'}
 					type='submit'
