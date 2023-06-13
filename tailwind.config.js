@@ -110,6 +110,9 @@ module.exports = {
 			},
 			rounded: {
 				'base': '12px',
+				'lg': '16px',
+				'xl': '24px',
+				'2xl': '32px',
 			},
 			typography: theme => ({
 				DEFAULT: {
@@ -124,26 +127,32 @@ module.exports = {
 						h1: {
 							color: theme('colors.info'),
 							fontWeight: 700,
+							fontSize: '56px',
 						},
 						h2: {
 							color: theme('colors.info'),
 							fontWeight: 700,
+							fontSize: '48px',
 						},
 						h3: {
 							color: theme('colors.info'),
 							fontWeight: 700,
+							fontSize: '40px',
 						},
 						h4: {
 							color: theme('colors.info'),
 							fontWeight: 700,
+							fontSize: '32px',
 						},
 						h5: {
 							color: theme('colors.info'),
 							fontWeight: 700,
+							fontSize: '24px',
 						},
 						h6: {
 							color: theme('colors.info'),
 							fontWeight: 700,
+							fontSize: '20px',
 						},
 					},
 				},

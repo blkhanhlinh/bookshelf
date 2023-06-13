@@ -1,10 +1,21 @@
+import bookstore from '@/redux/bookstore'
 import '@/styles/globals.css'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import { Provider } from 'react-redux'
+
+const theme = extendTheme({
+	fonts: {
+		heading: 'Nunito Sans',
+		body: 'Nunito Sans',
+	},
+})
 
 export default function App({ Component, pageProps }) {
-  return (
-    <ChakraProvider>
-      <Component {...pageProps} />
-    </ChakraProvider>
-  )
+	return (
+		<Provider store={bookstore}>
+			<ChakraProvider theme={theme}>
+				<Component {...pageProps} />
+			</ChakraProvider>
+		</Provider>
+	)
 }

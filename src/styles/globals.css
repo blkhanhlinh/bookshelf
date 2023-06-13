@@ -8,6 +8,6 @@
         @apply flex flex-col items-center justify-center;
     }
     .menu-link:hover {
-        @apply opacity-70;
+        @apply text-primary-main;
     }
 }
