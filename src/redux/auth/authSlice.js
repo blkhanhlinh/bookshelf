@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { userLogin } from './authActions'
-import { REHYDRATE } from "next-redux-wrapper"
-
-
+import { HYDRATE } from "next-redux-wrapper"
 
 const initialState = {
     loading: false,
@@ -39,10 +37,10 @@ const authSlice = createSlice({
             state.error = payload
         },
 
-        [REHYDRATE]: (state, action) => {
+        [HYDRATE]: (state, action) => {
             return {
                 ...state,
-                ...action.payload,
+                ...action.payload.auth,
             }
         },
     },
