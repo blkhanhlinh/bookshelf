@@ -61,7 +61,12 @@ const Account = () => {
 							Logout
 						</Link>
 					) : (
-						''
+						<Link
+						href='/auth/login'
+						className='text-regular-regular hover:text-primary-main'
+					>
+						Login
+					</Link>
 					)}
 				</Stack>
 			</div>
