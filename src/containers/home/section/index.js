@@ -13,11 +13,11 @@ const SectionHeader = ({ children }) => {
 const links = [
 	{
 		title: 'Best Sellers',
-		link: '/best-sellers',
+		link: '/all-categories/best-sellers',
 	},
 	{
 		title: 'New Arrivals',
-		link: '/new-arrivals',
+		link: '/all-categories/new-arrivals',
 	},
 ]
 

@@ -30,7 +30,7 @@ const ItemCart = ({ item, removeItem }) => {
 				aria-label='Remove item from cart'
 				icon={<BsTrash size={18} color={bookshelfColors.info} />}
 				onClick={() => removeItem(item.id)}
-				rounded='full'
+				rounded='lg'
 				variant='ghost'
 			/>
 		</div>

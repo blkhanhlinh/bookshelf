@@ -8,7 +8,6 @@ import {
 	Stack,
 	Text,
 	Box,
-	Link,
 	Center,
 } from '@chakra-ui/react'
 import React, { useEffect, useState, useContext } from 'react'
@@ -16,6 +15,7 @@ import bookshelfColors from '@/styles/colors'
 import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '@/redux/cart.slice'
+import Link from 'next/link'
 
 const CartButton = ({ book }) => {
 	const [isHover, setIsHover] = useState(false)
@@ -69,7 +69,7 @@ const CartButton = ({ book }) => {
 	)
 }
 
-const Rating = ({ rating, numReviews }) => {
+export const Rating = ({ rating, numReviews }) => {
 	return (
 		<Flex alignItems='center'>
 			{Array(5)
@@ -113,12 +113,12 @@ const Rating = ({ rating, numReviews }) => {
 	)
 }
 
-const BookCard = ({ book, isHomepage = true}) => {
+const BookCard = ({ book, isHomepage = true }) => {
 	return (
 		<Card
 			maxW={'sm'}
 			w='290px'
-			h= {isHomepage ? '458px' : '100%'}
+			h={isHomepage ? '458px' : '100%'}
 			borderRadius='2xl'
 			border={`1px solid ${bookshelfColors.primary.main}`}
 			flex={1}
@@ -129,16 +129,23 @@ const BookCard = ({ book, isHomepage = true}) => {
 		>
 			<Box>
 				<Center>
-					<Image
-						src={book.cover}
-						alt={book.title}
-						height={'194px'}
-						marginBottom={6}
-					/>
+					<Link href={`/books/${book.id}`}>
+						<Image
+							src={book.cover}
+							alt={book.title}
+							height={'194px'}
+							marginBottom={6}
+						/>
+					</Link>
 				</Center>
 			</Box>
 			<Stack>
-				<Text className='text-medium-regular pb-1'>{book.title}</Text>
+				<Link
+					className='text-medium-regular pb-1'
+					href={`/books/${book.id}`}
+				>
+					{book.title}
+				</Link>
 				<Heading size={'md'} textColor={bookshelfColors.primary.main}>
 					{book.unit_price} ₫
 				</Heading>

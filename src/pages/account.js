@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import { Header } from '@/components/Header'
-import { DesktopLayout } from '@/components/Layout'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
+import DesktopLayout from '@/components/Layout/DesktopLayout'
 
 function Account() {
 	const { userInfo, userToken } = useSelector((state) => state.auth)
@@ -23,7 +23,6 @@ function Account() {
 				<title>My account</title>
 			</Head>
 			<DesktopLayout>
-				<Header />
 				<p>{userInfo?.username}</p>
 			</DesktopLayout>
 		</>
