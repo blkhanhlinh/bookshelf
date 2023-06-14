@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { orderCheckout } from './cartActions'
 
 const cartSlice = createSlice({
 	name: 'cart',
@@ -35,6 +36,11 @@ const cartSlice = createSlice({
 		},
 
 	},
+	extraReducers: {
+		[orderCheckout.fulfilled]: (state, { payload }) => {
+			// state = []
+		}
+	}
 })
 
 export const cartReducer = cartSlice.reducer
