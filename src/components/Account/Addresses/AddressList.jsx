@@ -47,15 +47,14 @@ function AddressList() {
 				<Flex direction='column' w='full'>
 					<Card>
 						<CardHeader className='flex flex-row' pb={0}>
-							<Text className='text-large-bold'>Lan Nguyen</Text>
+							<Text className='text-large-bold'>{`${userInfo.first_name} ${userInfo.last_name}`}</Text>
 							<Text className='text-large-regular' ml={12}>
-								0123456789
+								{userInfo.phone_number}
 							</Text>
 						</CardHeader>
 						<CardBody pt={4}>
 							<Text className='text-regular-regular'>
-								88, Han Thuyen Street, Quarter 6 Linh Trung
-								Ward, Thu Duc District, Ho Chi Minh City.
+								{userInfo.address}
 							</Text>
 							<Badge variant='outline' colorScheme='green' mt={4}>
 								Default

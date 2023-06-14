@@ -51,7 +51,7 @@ function ProfileContent() {
 				lg: '8',
 			}}
 			direction='row'
-			justifyProfileContent='space-around'
+			justifyContent='space-around'
 			w={880}
 		>
 			<Flex p={6} direction='column' w={560}>

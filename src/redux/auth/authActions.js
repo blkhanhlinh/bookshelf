@@ -74,3 +74,36 @@ export const userRegister = createAsyncThunk(
 		}
 	}
 )
+
+export const userUpdate = createAsyncThunk(
+	'user/update',
+	async ({ userToken, userInfo, changedInfo }, { rejectWithValue }) => {
+		try {
+			const config = {
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					Authorization: `Token ${userToken}`,
+				},
+			}
+			const { data } = await axios.put(
+				`${backendURL}/users/${userInfo.id}/`,
+				{
+					"username": userInfo.username,
+					"email": userInfo.email,
+					"password": userInfo.password,
+					...changedInfo
+				},
+				config
+			)
+			console.log(data)
+			if (data) return data
+		} catch (error) {
+			if (error.response && error.response.data.message) {
+				return rejectWithValue(error.response.data.message)
+			} else {
+				return rejectWithValue(error.message)
+			}
+		}
+	}
+)

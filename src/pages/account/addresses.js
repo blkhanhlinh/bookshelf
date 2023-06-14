@@ -23,7 +23,7 @@ function Addresses() {
 					content='initial-scale=1.0, width=device-width'
 				/>
 				<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-				<title>My Addresses</title>
+				<title>My Address</title>
 			</Head>
             <DesktopLayout isHomepage={false}>
                 <Flex minW="max-content">

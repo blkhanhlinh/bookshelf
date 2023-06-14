@@ -19,19 +19,28 @@ import {
 	Textarea,
 } from '@chakra-ui/react'
 import bookshelfColors from '@/styles/colors'
+import { userUpdate } from '@/redux/auth/authActions'
+
 
 function AccountForm() {
 	const router = useRouter()
-	const { userInfo, loading, error } = useSelector((state) => state.auth)
+	const { userInfo, userToken, loading, error } = useSelector((state) => state.auth)
 	const dispatch = useDispatch()
 
-	const [firstName, setFirstName] = useState('')
-	const [lastName, setLastName] = useState('')
-	const [phoneNum, setPhoneNum] = useState('')
-	const [address, setAddress] = useState('')
+	const [firstName, setFirstName] = useState(userInfo?.first_name)
+	const [lastName, setLastName] = useState(userInfo?.last_name)
+	const [phoneNum, setPhoneNum] = useState(userInfo?.phone_number)
+	const [address, setAddress] = useState(userInfo?.address)
 
 	const handleSubmit = async e => {
 		e.preventDefault()
+		const changedInfo = {
+			"first_name": firstName,
+			"last_name": lastName,
+			"phone_number": phoneNum,
+			"address": address,
+		}
+		dispatch(userUpdate({userToken, userInfo, changedInfo}))
 	}
 
 	return (
@@ -54,8 +63,12 @@ function AccountForm() {
 						<FormLabel fontSize='1rem' lineHeight='1.5rem'>
 							Email
 						</FormLabel>
-						<Input type='text' placeholder='email' value={userInfo.email} disabled
-                        w={360}/>
+						<Input
+							type='text'
+							placeholder='Email'
+							value={userInfo.email}
+							disabled
+							w={360}/>
 					</FormControl>
 					<FormControl id='first-name' className='flex flex-row justify-between items-center'>
 						<FormLabel fontSize='1rem' lineHeight='1.5rem'>
@@ -63,8 +76,9 @@ function AccountForm() {
 						</FormLabel>
 						<Input
 							type='text'
-							placeholder='first-name'
+							placeholder='First name'
 							value={firstName}
+							onChange={e => setFirstName(e.target.value)}
                             w={360}
 						/>
 					</FormControl>
@@ -74,8 +88,9 @@ function AccountForm() {
 						</FormLabel>
 						<Input
 							type='text'
-							placeholder='last-name'
+							placeholder='Last name'
 							value={lastName}
+							onChange={e => setLastName(e.target.value)}
                             w={360}
 						/>
 					</FormControl>
@@ -85,8 +100,9 @@ function AccountForm() {
 						</FormLabel>
 						<Input
 							type='text'
-							placeholder='phone-num'
+							placeholder='Phone number'
 							value={phoneNum}
+							onChange={e => setPhoneNum(e.target.value)}
                             w={360}
 						/>
 					</FormControl>
@@ -97,8 +113,9 @@ function AccountForm() {
 						<Textarea
 							resize='none'
 							type='text'
-							placeholder='address'
+							placeholder='Address'
 							value={address}
+							onChange={e => setAddress(e.target.value)}
                             w={360}
 						/>
 					</FormControl>
