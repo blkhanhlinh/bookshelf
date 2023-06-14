@@ -33,13 +33,9 @@ const cartSlice = createSlice({
 			const index = state.findIndex(item => item.id === action.payload)
 			state.splice(index, 1)
 		},
+
 	},
 })
-
-const persistConfig = {
-	key: 'cart',
-	storage: storage,
-}
 
 export const cartReducer = cartSlice.reducer
 

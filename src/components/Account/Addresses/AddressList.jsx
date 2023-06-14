@@ -30,7 +30,7 @@ function AddressList() {
 
 	return (
 		<Flex
-			bg='white'
+			// bg='white'
 			rounded='xl'
 			mt={{
 				base: '6',

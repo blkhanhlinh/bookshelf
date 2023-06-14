@@ -26,7 +26,7 @@ const SideBar = () => {
 
 	return (
 		<Box
-			h='full'
+			h='640'
 			w='290px'
 			// bg='white'
 			rounded='xl'
