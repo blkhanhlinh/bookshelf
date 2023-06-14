@@ -1,9 +1,13 @@
-import { Box, Divider, Stack, Text } from '@chakra-ui/react'
+import { Box, Checkbox, CheckboxGroup, Divider, Stack, Text } from '@chakra-ui/react'
 import Link from 'next/link'
 import { categories } from '@/constant/route'
 import { useRouter } from 'next/router'
+import bookshelfColors from '@/styles/colors'
+import PriceFilter from './PriceFilter'
+import RatingFilter from './RatingFilter'
+import AuthorFilter from './AuthorFilter'
 
-const FilterSidebar = () => {
+const FilterSidebar = ({ books }) => {
 	const router = useRouter()
 	return (
 		<Box
@@ -23,8 +27,8 @@ const FilterSidebar = () => {
 						<Link
 							href={category.path}
 							key={index}
-							className={`text-base ${
-								router.pathname === category.path
+							className={`text-base py-1 ${
+								router.asPath === category.path
 									? 'text-primary-main font-bold'
 									: 'hover:text-primary-main'
 							}`}
@@ -35,12 +39,9 @@ const FilterSidebar = () => {
 				</Stack>
 			</Box>
             <Divider />
-            <Box p={6}>
-                <Text className='text-xl font-bold'>Rating</Text>
-                <Stack paddingLeft={2} pt={2} dir='columns'>
-                    
-                </Stack>
-            </Box>
+			<PriceFilter books={books}/>
+			<RatingFilter />
+			<AuthorFilter />
 		</Box>
 	)
 }

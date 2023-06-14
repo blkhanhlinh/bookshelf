@@ -4,6 +4,8 @@ import { API_URL } from '@/constant/api'
 import { BookGrid } from '@/components/Books'
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs'
 import DesktopLayout from '@/components/Layout/DesktopLayout'
+import FilterSidebar from '@/components/Filter/FilterSidebar'
+import { Flex, Spacer } from '@chakra-ui/react'
 
 const CategoryPage = ({ books }) => {
 	const router = useRouter()
@@ -13,7 +15,11 @@ const CategoryPage = ({ books }) => {
 	return (
 		<DesktopLayout isHomepage={false}>
 			<Breadcrumbs category={categoryName} />
-			<BookGrid books={books}/>
+			<Flex minW="max-content" marginBottom={8}>
+                <FilterSidebar books={books}/>
+                <Spacer />
+                <BookGrid books={books} />
+            </Flex>
 		</DesktopLayout>
 	)
 }
