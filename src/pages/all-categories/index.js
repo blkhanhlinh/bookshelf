@@ -1,10 +1,9 @@
 import DesktopLayout from "@/components/Layout/DesktopLayout"
 import { useRouter } from "next/router"
-import { BookGrid } from "@/components/Books";
 import { getBooksFromAPI } from "@/api";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Spacer } from "@chakra-ui/react";
-import FilterSidebar from "@/components/Filter/FilterSidebar";
 import { connect } from "react-redux";
+import DisplayBooks from "@/components/Layout/DisplayBooks";
 
 export async function getServerSideProps() {
     const books = await getBooksFromAPI();
@@ -23,11 +22,7 @@ const AllCategories = ({ books }) => {
                     <BreadcrumbLink>All Categories</BreadcrumbLink>
                 </BreadcrumbItem>
             </Breadcrumb>
-			<Flex minW="max-content" marginBottom={8}>
-                <FilterSidebar books={books}/>
-                <Spacer />
-                <BookGrid books={books} />
-            </Flex>
+			<DisplayBooks books={books} />
         </DesktopLayout>
     )
 }

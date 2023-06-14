@@ -1,11 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { cartReducer } from "./cart.slice";
-import { rootReducer } from "./reducers";
+import { filterReducer } from "./filter.slice";
+import { bookReducer } from "./books.slice";
 
-const reducer = {
+const reducer = combineReducers({
     cart: cartReducer,
-    root: rootReducer
-};
+    filter: filterReducer,
+    books: bookReducer
+});
 
 const bookstore = configureStore({
     reducer,

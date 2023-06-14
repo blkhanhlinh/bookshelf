@@ -2,8 +2,6 @@ import { Box, Button, Flex, SimpleGrid } from '@chakra-ui/react'
 import { Children, isValidElement, useEffect, useMemo, useState } from 'react'
 import { BookCard } from '../HomeSlider'
 import NoResult from '../NoResult'
-import { connect } from 'react-redux'
-import { fetchBooks } from '@/redux/actions/bookActions'
 
 const Grid = props => {
 	const columns = useMemo(() => {
@@ -16,6 +14,7 @@ const Grid = props => {
 			xl: Math.min(3, count),
 		}
 	}, [props.children])
+
 	return (
 		<SimpleGrid
 			columns={columns}
@@ -32,11 +31,7 @@ const Grid = props => {
 	)
 }
 
-const BookGrid = ({books, fetchBooks}) => {
-	useEffect(() => {
-		fetchBooks()
-	}, [fetchBooks])
-
+const BookGrid = ({ books }) => {
 	const [currentPage, setCurrentPage] = useState(1)
 	const booksPerPage = 9
 
@@ -55,13 +50,7 @@ const BookGrid = ({books, fetchBooks}) => {
 	const totalPages = Math.ceil(books.length / booksPerPage)
 
 	return (
-		<Box
-			width={'fit-content'}
-			py={{
-				base: '6',
-				lg: '8',
-			}}
-		>
+		<Box width={'fit-content'}>
 			<Grid columnGap={6}>
 				{currentBooks.map(book => (
 					<BookCard key={book.id} book={book} isHomepage={false} />
@@ -88,4 +77,4 @@ const BookGrid = ({books, fetchBooks}) => {
 	)
 }
 
-export default connect(null, { fetchBooks })(BookGrid);
+export default BookGrid

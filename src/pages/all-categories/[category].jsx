@@ -1,11 +1,9 @@
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import { API_URL } from '@/constant/api'
-import { BookGrid } from '@/components/Books'
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs'
 import DesktopLayout from '@/components/Layout/DesktopLayout'
-import FilterSidebar from '@/components/Filter/FilterSidebar'
-import { Flex, Spacer } from '@chakra-ui/react'
+import DisplayBooks from '@/components/Layout/DisplayBooks'
 
 const CategoryPage = ({ books }) => {
 	const router = useRouter()
@@ -15,11 +13,7 @@ const CategoryPage = ({ books }) => {
 	return (
 		<DesktopLayout isHomepage={false}>
 			<Breadcrumbs category={categoryName} />
-			<Flex minW="max-content" marginBottom={8}>
-                <FilterSidebar books={books}/>
-                <Spacer />
-                <BookGrid books={books} />
-            </Flex>
+			<DisplayBooks books={books} />
 		</DesktopLayout>
 	)
 }
