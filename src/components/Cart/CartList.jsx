@@ -1,7 +1,12 @@
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { removeFromCart, incrementQuantity, decrementQuantity } from '@/redux/cart.slice'
+import { orderCheckout } from '@/redux/cartActions'
+import {
+	removeFromCart,
+	incrementQuantity,
+	decrementQuantity,
+} from '@/redux/cart.slice'
 import { BsTrash } from 'react-icons/bs'
 import {
 	Spacer,
@@ -17,12 +22,12 @@ import bookshelfColors from '@/styles/colors'
 
 function CartList() {
 	const router = useRouter()
-	const { userInfo, loading, error } = useSelector(state => state.auth)
+	const { userToken, userInfo, loading, error } = useSelector(state => state.auth)
 	const cart = useSelector(state => state.cart)
 	const dispatch = useDispatch()
 
-	console.log(cart)
-	console.log(userInfo)
+	// console.log(cart)
+	// console.log(userInfo)
 
 	if (!userInfo) {
 		router.push('/auth/login')
@@ -32,11 +37,15 @@ function CartList() {
 	const Quantity = ({ item }) => {
 		return (
 			<Flex className='flex flex-row justify-center items-center'>
-				<Button onClick={() => dispatch(decrementQuantity(item.id))}>-</Button>
+				<Button onClick={() => dispatch(decrementQuantity(item.id))}>
+					-
+				</Button>
 				<Text className='text-regular-bold w-12 text-center'>
 					{item.quantity}
 				</Text>
-				<Button onClick={() => dispatch(incrementQuantity(item.id))}>+</Button>
+				<Button onClick={() => dispatch(incrementQuantity(item.id))}>
+					+
+				</Button>
 			</Flex>
 		)
 	}
@@ -67,8 +76,22 @@ function CartList() {
 
 	const getTotalPrice = () => {
 		return cart.reduce(
-			(accumulator, item) => accumulator + item.quantity * item.unit_price, 0
+			(accumulator, item) =>
+				accumulator + item.quantity * item.unit_price,
+			0
 		)
+	}
+
+	const handleSubmit = async e => {
+		e.preventDefault()
+		const checkoutInfo = {
+			"total": getTotalPrice(),
+			"orderItems": cart.map(item => item.id),
+			"quantity": cart.map(item => item.quantity)
+		}
+		// console.log(checkoutInfo)
+		dispatch(orderCheckout({ userToken, userInfo, checkoutInfo }))
+		cart.map(item => dispatch(removeFromCart(item.id)))
 	}
 
 	return (
@@ -168,7 +191,7 @@ function CartList() {
 							}}
 							my={8}
 							w='185px'
-							type='submit'
+							onClick={(e) => handleSubmit(e)}
 						>
 							Check out
 						</Button>

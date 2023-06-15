@@ -12,7 +12,7 @@ function Profile() {
 	const { userInfo, userToken, loading, error } = useSelector((state) => state.auth)
 	const dispatch = useDispatch()
 
-	console.log(userInfo)
+	// console.log(userInfo)
 
 	return (
 		<>

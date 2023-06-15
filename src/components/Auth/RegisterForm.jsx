@@ -71,7 +71,7 @@ const RegisterForm = () => {
 			bg={bookshelfColors.white}
 			width={'40%'}
 			p={12}
-			height={'45rem'}
+			height={'fit-content'}
 			direction={'column'}
 		>
 			<h4 className='text-heading-4 mt-4 mb-8 text-center'>Sign up</h4>
@@ -221,7 +221,7 @@ const RegisterForm = () => {
 					Sign up
 				</Button>
 			</form>
-			<Text mt='auto' mb='0' textAlign={'center'}>
+			<Text mt='72px' mb='0' textAlign={'center'}>
 				Already have an account?{' '}
 				<Link as={NextLink} href='/auth/login' color='secondary.500'>
 					Sign in
