@@ -29,7 +29,7 @@ yarn dev
 
 ## For contributors
 
-Please create a new branch for your contribution. DO NOT upload code to the `main` branch directly.
+Please create a new branch for your contribution. DO NOT upload code to the `master` branch directly.
 
 📌 Naming branch:
 
@@ -40,3 +40,6 @@ There are 2 types of branches:
 -   Fix: Use this type of branch to fix an issue or a set of issues. Pattern: `fix/name`
 
 The branch name will use kebab case: lowercase words and separated by a dash (-). E.g.: feature/example-new-feature
+
+## User interface
+- Figma: [Bookshelf UI](https://www.figma.com/file/gNc8HHa4zQJ9MGlXcrPbbY/Bookshelf-%7C-UI%2FUX?type=design&node-id=0%3A1&t=7G7Q4U0cP7a5YQ04-1)
