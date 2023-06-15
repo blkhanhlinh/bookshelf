@@ -26,6 +26,7 @@ import {
 	addToCart,
 	incrementQuantity,
 	decrementQuantity,
+	addSomeToCart,
 } from '@/redux/cart.slice'
 import { CardSlider } from '@/components/HomeSlider'
 
@@ -135,7 +136,7 @@ const BookDetailsPage = ({ book, books }) => {
 		if (bookInCart) {
 			dispatch(incrementQuantity(id))
 		} else {
-			dispatch(addToCart({ ...book.book, quantity }))
+			dispatch(addSomeToCart({ ...book.book, quantity }))
 		}
 	}
 
