@@ -34,15 +34,15 @@ const PromoCards = () => {
 					color={bookshelfColors.white}
 				>
 					<Heading fontSize={'20px'}>Book of the week</Heading>
-					<Heading fontSize={'2xl'}>And Then There Was None</Heading>
-					<Text>Agatha Christie</Text>
+					<Heading fontSize={'2xl'}>The Fault In Our Stars</Heading>
+					<Text>John Green</Text>
 					<Button
 						bgColor={bookshelfColors.secondary.main}
 						paddingX={'40px'}
 						rounded={'xl'}
 						_hover={{ bgColor: bookshelfColors.secondary.dark }}
 					>
-						<Link href='/book/and-then-there-was-none'>
+						<Link href='/books/3'>
 							Buy now!
 						</Link>
 					</Button>

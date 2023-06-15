@@ -148,7 +148,7 @@ const Footer = () => {
 						<ListHeader>Services</ListHeader>
 						{services.map((service, index) => {
 							return (
-								<Link key={index} href={service.link}>{service.title}</Link>
+								<Link key={index} href={service.path}>{service.title}</Link>
 							)
 						})}
 					</Stack>
@@ -156,7 +156,7 @@ const Footer = () => {
 						<ListHeader>Product Categories</ListHeader>
 						{categories.map((category, index) => {
 							return (
-								<Link key={index} href={category.link}>
+								<Link key={index} href={category.path}>
 									{category.title}
 								</Link>
 							)

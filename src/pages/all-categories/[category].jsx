@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import { API_URL } from '@/constant/api'
-import { BookGrid } from '@/components/Books'
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs'
 import DesktopLayout from '@/components/Layout/DesktopLayout'
+import DisplayBooks from '@/components/Layout/DisplayBooks'
 
 const CategoryPage = ({ books }) => {
 	const router = useRouter()
@@ -13,7 +13,7 @@ const CategoryPage = ({ books }) => {
 	return (
 		<DesktopLayout isHomepage={false}>
 			<Breadcrumbs category={categoryName} />
-			<BookGrid books={books}/>
+			<DisplayBooks books={books} />
 		</DesktopLayout>
 	)
 }

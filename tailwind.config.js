@@ -31,6 +31,13 @@ module.exports = {
 				'body-extra-small': '1rem',
 			},
 			fontSize: {
+				'heading-4': [
+					'32px',
+					{
+						lineHeight: '120%',
+						fontWeight: '700',
+					},
+				],
 				'large-bold': [
 					'18px',
 					{
