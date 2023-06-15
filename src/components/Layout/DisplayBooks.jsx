@@ -11,7 +11,7 @@ import {
 	Text,
 } from '@chakra-ui/react'
 import bookshelfColors from '@/styles/colors'
-import { sortBooksAsc, sortBooksDesc } from '@/redux/books.slice'
+import { resetSort, sortBooksAsc, sortBooksDesc } from '@/redux/books.slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
@@ -28,7 +28,11 @@ const DisplayBooks = ({ books, isSearch = false }) => {
     } else if (sortBy === 'descending') {
       dispatch(sortBooksDesc(books));
     }
-  }, [sortBy, books, dispatch]);  
+
+    return () => {
+      dispatch(resetSort(books));
+    };
+  }, [sortBy, books, dispatch]);
 
 	return (
 		<Flex minW='max-content' marginBottom={8}>
@@ -54,7 +58,6 @@ const DisplayBooks = ({ books, isSearch = false }) => {
 						placeholder='Price'
 						colorScheme='teal'
 						bg={'white'}
-						onChange={e => setSortBy(e.target.value)}
 					>
 						<option value='ascending'>Price: Low to high</option>
 						<option value='descending'>Price: High to low</option>
@@ -65,8 +68,8 @@ const DisplayBooks = ({ books, isSearch = false }) => {
 						bg={'white'}
 						onChange={e => setSortBy(e.target.value)}
 					>
-						<option value='ascending'>Alphabet: A-Z</option>
-						<option value='descending'>Alphabet: Z-A</option>
+						<option value='descending'>Alphabet: A-Z</option>
+						<option value='ascending'>Alphabet: Z-A</option>
 					</Select>
 				</HStack>
 				<BookGrid books={books} />

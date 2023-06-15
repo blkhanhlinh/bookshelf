@@ -41,15 +41,11 @@ export const categories = [
 export const account = [
     {
         path: '/account/profile',
-        title: 'My Account',
+        title: 'My account',
     },
     {
         path: '/purchases',
         title: 'My purchases',
-    },
-    {
-        path: '/recent-view',
-        title: 'Recent View',
     },
 ]
 
