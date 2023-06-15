@@ -1,0 +1,3 @@
+[submodule "bookshelf-be"]
+	path = bookshelf-be
+	url = https://github.com/emerald-lan/bookshelf-be
