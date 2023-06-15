@@ -1,7 +1,8 @@
 # bookshelf-fe
 
 This is the frontend of the bookshelf project. It is built with React.js, Next.js, Redux, TailwindCSS and Chakra UI.
-## Contibutors
+
+## Contributors
 
 1. [Bùi Lê Khánh Linh](https://github.com/blkhanhlinh) - Leader / Front-end / Design / Document
 2. [Nguyễn Thị Thanh Lan](https://github.com/emerald-lan) - Back-end / Front-end / Document
