@@ -9,10 +9,12 @@ import { persistStore, persistReducer, FLUSH,
     PURGE,
     REGISTER, } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { bookReducer } from './books.slice'
 
 const rootReducer = combineReducers({
     auth: authReducer,
     cart: cartReducer,
+    books: bookReducer
 })
 
 const persistConfig = {

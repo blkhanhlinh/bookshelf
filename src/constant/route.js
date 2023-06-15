@@ -66,6 +66,10 @@ export const accountDetails = [
         path: '/account/change-password',
         title: 'Change Password',
     },
+    {
+        path: '/logout',
+        title: 'Logout'
+    }
 ]
 
 export const services = [
