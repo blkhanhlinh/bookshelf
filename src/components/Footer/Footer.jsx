@@ -165,14 +165,14 @@ const Footer = () => {
 					<Stack spacing={2} align={'flex-start'}>
 						<ListHeader>My Account</ListHeader>
 						<HStack>
-							<Link href='/login'>Login</Link> <span> / </span>
-							<Link href='/signup' as={'span'}>
+							<Link href='/auth/login'>Login</Link> <span> / </span>
+							<Link href='/auth/register' as={'span'}>
 								Signup
 							</Link>
 						</HStack>
 						{account.map((account, index) => {
 							return (
-								<Link key={index} href={account.link}>{account.title}</Link>
+								<Link key={index} href={account.path}>{account.title}</Link>
 							)
 						})}
 					</Stack>

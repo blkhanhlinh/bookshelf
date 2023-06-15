@@ -29,12 +29,17 @@ const bookSlice = createSlice({
       state.books = sortAsc;
     },
     sortBooksDesc: (state, action) => {
-      const sortDesc = action.payload.sort((a, b) => (a.title < b.title ? -1 : a.title > b.title ? 1 : 0));
+      const sortDesc = [...action.payload].sort((a, b) =>
+        a.title > b.title ? -1 : a.title < b.title ? 1 : 0
+      );
       state.books = sortDesc;
     },
     searchBooks: (state, action) => {
       state.books = action.payload;
       state.page = 1;
+    },
+    resetSort: (state) => {
+      state.books = state.searchResults;
     },
   },
 });
@@ -46,6 +51,7 @@ export const {
   sortBooksAsc,
   sortBooksDesc,
   searchBooks,
+  resetSort
 } = bookSlice.actions;
 
 export const bookReducer = bookSlice.reducer;
