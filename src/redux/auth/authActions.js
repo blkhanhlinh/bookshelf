@@ -19,7 +19,7 @@ export const userLogin = createAsyncThunk(
 			)
 
 			if (data.token) {
-                console.log(data)
+                // console.log(data)
 				localStorage.setItem('userToken', data.token)
 
 				const { data: userInfo } = await axios.get(
@@ -96,7 +96,7 @@ export const userUpdate = createAsyncThunk(
 				},
 				config
 			)
-			console.log(data)
+			// console.log(data)
 			if (data) return data
 		} catch (error) {
 			if (error.response && error.response.data.message) {

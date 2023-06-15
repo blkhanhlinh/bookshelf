@@ -3,7 +3,7 @@ import { Header } from '../Header'
 import { Footer } from '../Footer'
 
 const DesktopLayout = ({ children, isHomepage, showFooter = true }) => {
-	console.log(showFooter)
+	// console.log(showFooter)
 	return (
 		<>
 			<Box maxWidth='1230px' m='auto' className='font-sans text-info'>

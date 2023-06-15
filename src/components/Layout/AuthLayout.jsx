@@ -6,7 +6,7 @@ import { Footer } from '../Footer'
 const AuthLayout = ({ children }) => {
 	return (
 		<Box className='bg-primary-main' height='100%' pt='16'>
-			<Box maxWidth='1230px' m='auto' className='font-sans text-info'>
+			<Box maxWidth='1230px' m='auto' className='font-sans text-info pb-16'>
 				<main>{children}</main>
 			</Box>
 			<Footer />

@@ -26,13 +26,13 @@ function CartList() {
 	const cart = useSelector(state => state.cart)
 	const dispatch = useDispatch()
 
-	console.log(cart)
-	console.log(userInfo)
+	// console.log(cart)
+	// console.log(userInfo)
 
-	// if (!userInfo) {
-	// 	router.push('/auth/login')
-	// 	return
-	// }
+	if (!userInfo) {
+		router.push('/auth/login')
+		return
+	}
 
 	const Quantity = ({ item }) => {
 		return (
@@ -89,7 +89,7 @@ function CartList() {
 			"orderItems": cart.map(item => item.id),
 			"quantity": cart.map(item => item.quantity)
 		}
-		console.log(checkoutInfo)
+		// console.log(checkoutInfo)
 		dispatch(orderCheckout({ userToken, userInfo, checkoutInfo }))
 		cart.map(item => dispatch(removeFromCart(item.id)))
 	}

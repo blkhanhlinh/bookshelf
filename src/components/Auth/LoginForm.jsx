@@ -22,12 +22,27 @@ import { userLogin } from '@/redux/auth/authActions'
 const LoginForm = () => {
 	const router = useRouter()
 	const dispatch = useDispatch()
+	const toast = useToast()
 
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
-	const [isRememberMe, setIsRememberMe] = useState(false)
 
-	const { loading, userInfo, error } = useSelector((state) => state.auth)
+	const { loading, userInfo, error, success } = useSelector((state) => state.auth)
+
+	useEffect(() => {
+		if (error) {
+			toast({
+				title: 'An error occurred.',
+				description: error,
+				status: 'error',
+				duration: 2000,
+				isClosable: true,
+				position: 'bottom-right',
+				colorScheme: 'error',
+			})
+		}
+	}, [error])
+
 
 	const handleSubmit = async e => {
 		e.preventDefault()
@@ -35,7 +50,6 @@ const LoginForm = () => {
 		router.push('/')
 	}
 
-	console.log(userInfo)
 
 	return (
 		<Flex
@@ -93,16 +107,10 @@ const LoginForm = () => {
 						<Stack direction={'row'} justify={'space-between'}>
 							<Checkbox
 								colorScheme='primary'
-								value={isRememberMe}
-								onChange={e =>
-									setIsRememberMe(e.target.checked)
-								}
+								defaultChecked
 							>
 								Remember me
 							</Checkbox>
-							<Link as={NextLink} href='/auth/forgot-password'>
-								Forgot password?
-							</Link>
 						</Stack>
 						<Button
 							bg={bookshelfColors.primary.main}

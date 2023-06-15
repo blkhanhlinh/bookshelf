@@ -25,7 +25,7 @@ export const orderCheckout = createAsyncThunk(
 				},
 				config
 			)
-			console.log(data)
+			// console.log(data)
 			if (data) return data
 		} catch (error) {
 			if (error.response && error.response.data.message) {
