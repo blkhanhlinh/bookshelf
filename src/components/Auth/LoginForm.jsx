@@ -105,11 +105,11 @@ const LoginForm = () => {
 							</Link>
 						</Stack>
 						<Button
-							bg='primary.500'
+							bg={bookshelfColors.primary.main}
 							color={'white'}
 							fontWeight={'normal'}
 							_hover={{
-								bg: 'primary.600',
+								bg: bookshelfColors.primary.dark,
 							}}
 							type='submit'
 						>

@@ -40,7 +40,7 @@ const Search = () => {
 					<InputGroup className='h-10'>
 						<Input
 							pr='4.0rem'
-							placeholder='Search books by title'
+							placeholder='Search books by title, author'
 							borderColor={bookshelfColors.primary.light}
 							focusBorderColor={bookshelfColors.primary.main}
 							_hover={{

@@ -11,16 +11,17 @@ import {
 	FormErrorMessage,
 	FormHelperText,
 	useToast,
+	InputGroup,
 } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import NextLink from 'next/link'
 import axios from 'axios'
-import useAuthStore from '@/stores/useAuthStore'
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { userRegister } from '@/redux/auth/authActions'
 
 const RegisterForm = () => {
 	const router = useRouter()
-	const toast = useToast()
 
 	const [email, setEmail] = useState('')
 	const [username, setUsername] = useState('')
@@ -30,24 +31,8 @@ const RegisterForm = () => {
 	const [passwordError, setPasswordError] = useState(false)
 	const [repeatPasswordError, setRepeatPasswordError] = useState(false)
 
-	const { error } = useAuthStore(state => ({
-		error: state.error,
-	}))
-
-	useEffect(() => {
-		if (error) {
-			toast({
-				title: 'An error occurred.',
-				description: error,
-				status: 'error',
-				duration: 2000,
-				isClosable: true,
-				position: 'bottom-right',
-				colorScheme: 'error',
-			})
-			useAuthStore.getState().clearError()
-		}
-	}, [error])
+	const { loading, error } = useSelector((state) => state.auth)
+	const dispatch = useDispatch()
 
 	const validateEmail = () => {
 		const regex = /^([\w-]+)(\.[\w-]+)*@([\w-]+\.)+([a-zA-Z]{2,7})$/
@@ -76,27 +61,8 @@ const RegisterForm = () => {
 
 	const handleSubmit = async e => {
 		e.preventDefault()
-		useAuthStore.getState().onLoading()
-		try {
-			await axios.post(
-				'http://127.0.0.1:8000/api/register/',
-				{ email, username, password },
-				{
-					headers: {
-						'Content-Type': 'application/json',
-						Accept: 'application/json',
-					},
-				}
-			)
-
-			router.replace('/auth/login')
-		} catch (err) {
-			console.log(err)
-			useAuthStore.getState().offLoading()
-			useAuthStore
-				.getState()
-				.setError(err.response?.data.detail || 'Something went wrong')
-		}
+		dispatch(userRegister({ email, username, password }))
+		router.push('/auth/login')
 	}
 
 	return (
@@ -243,11 +209,11 @@ const RegisterForm = () => {
 				</Stack>
 				<Button
 					mt='16'
-					bg='primary.500'
+					bg={bookshelfColors.primary.main}
 					color={'white'}
 					fontWeight={'normal'}
 					_hover={{
-						bg: 'primary.600',
+						bg: bookshelfColors.primary.dark,
 					}}
 					width={'100%'}
 					type='submit'

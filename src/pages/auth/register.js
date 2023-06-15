@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import { Header } from '@/components/Header'
 import RegisterForm from '@/components/Auth/RegisterForm'
-import { AuthLayout, DesktopLayout } from '@/components/Layout'
 import { Stack, Image } from '@chakra-ui/react'
+import AuthLayout from '@/components/Layout/AuthLayout'
+import DesktopLayout from '@/components/Layout/DesktopLayout'
 
 export default function Register() {
 	return (
@@ -16,9 +17,7 @@ export default function Register() {
 				<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 				<title>Sign up</title>
 			</Head>
-			<DesktopLayout>
-				<Header showSubNav={false} />
-			</DesktopLayout>
+			<DesktopLayout isHomepage={false} showFooter={false} />
 			<AuthLayout>
 				<Stack
 					direction='row'
@@ -26,7 +25,7 @@ export default function Register() {
 					justifyContent='space-between'
 				>
 					<RegisterForm />
-					<Image src='/signup.svg' alt='signup' />
+					<Image src='/signin.svg' alt='signin' />
 				</Stack>
 			</AuthLayout>
 		</>

@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import { Header } from '@/components/Header'
 import LoginForm from '@/components/Auth/LoginForm'
-import { AuthLayout, DesktopLayout } from '@/components/Layout'
+import AuthLayout from '@/components/Layout/AuthLayout'
+import DesktopLayout from '@/components/Layout/DesktopLayout'
 import { Stack, Image } from '@chakra-ui/react'
-
 
 
 function Login() {
@@ -18,9 +18,7 @@ function Login() {
 				<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 				<title>Login</title>
 			</Head>
-			<DesktopLayout>
-				<Header showSubNav={false} />
-			</DesktopLayout>
+			<DesktopLayout isHomepage={false} showFooter={false} />
 			<AuthLayout>
 				<Stack
 					direction='row'

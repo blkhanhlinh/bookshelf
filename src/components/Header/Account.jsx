@@ -41,13 +41,13 @@ const Account = () => {
 					}
 				>
 					<Link
-						href='/account'
+						href='/account/profile'
 						className='text-regular-regular hover:text-primary-main'
 					>
-						My account
+						My profile
 					</Link>
 					<Link
-						href='/purchase'
+						href='/purchases'
 						className='text-regular-regular hover:text-primary-main'
 					>
 						My purchase
@@ -61,7 +61,12 @@ const Account = () => {
 							Logout
 						</Link>
 					) : (
-						''
+						<Link
+						href='/auth/login'
+						className='text-regular-regular hover:text-primary-main'
+					>
+						Login
+					</Link>
 					)}
 				</Stack>
 			</div>
@@ -78,7 +83,7 @@ const Account = () => {
 			<PopoverTrigger>
 				<Flex direction='column' align='center'>
 					<MenuItem
-						path='/account'
+						path='/account/profile'
 						name='Account'
 						icon={
 							<path

@@ -108,20 +108,22 @@ const BookDetailsPage = ({ book, books }) => {
 	const dispatch = useDispatch()
 	const cart = useSelector(state => state.cart)
 
-	const Quantity = ({ item }) => {
+	const Quantity = () => {
 		const add = () => {
-			dispatch(incrementQuantity(item.id))
+			setQuantity(quantity + 1)
 		}
 
 		const minus = () => {
-			dispatch(decrementQuantity(item.id))
+			if (quantity > 1) {
+				setQuantity(quantity - 1)
+			}
 		}
 
 		return (
 			<Flex className='flex flex-row justify-center items-center'>
 				<Button onClick={minus}>-</Button>
 				<Text className='text-regular-bold w-12 text-center'>
-					{item.quantity}
+					{quantity}
 				</Text>
 				<Button onClick={add}>+</Button>
 			</Flex>
@@ -129,22 +131,12 @@ const BookDetailsPage = ({ book, books }) => {
 	}
 
 	const addToCartHandler = () => {
-		const item = {
-			id: id,
-			title: title,
-			quantity: 0,
-			price: unit_price,
-			cover: cover,
-		}
-		if (!cart) {
-			dispatch(addToCart(item))
+		const bookInCart = cart.find(item => item.id === id)
+		if (bookInCart) {
+			dispatch(incrementQuantity(id))
 		} else {
-			const index = cart.findIndex(cartItem => cartItem.id === id)
-			if (index === -1) {
-				dispatch(addToCart(item))
-			}
+			dispatch(addToCart({ ...book.book, quantity }))
 		}
-		router.push('/my-cart')
 	}
 
 	const relatedBooks = books.filter(
@@ -177,7 +169,7 @@ const BookDetailsPage = ({ book, books }) => {
 					<BreadcrumbLink href='#'>{title}</BreadcrumbLink>
 				</BreadcrumbItem>
 			</Breadcrumb>
-			<HStack mt='10' spacing='12' alignItems='flex-start'>
+			<HStack mt='10' spacing='16' alignItems='flex-start'>
 				<Flex>
 					<Image
 						src={cover}
@@ -205,7 +197,7 @@ const BookDetailsPage = ({ book, books }) => {
 					</Text>
 					<HStack>
 						<Text className='text-large-bold'>Quantity: </Text>
-						<Quantity item={book.book} />
+						<Quantity />
 					</HStack>
 					<Button
 						onClick={addToCartHandler}

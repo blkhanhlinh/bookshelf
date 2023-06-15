@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { userLogin } from './authActions'
+import { userLogin, userRegister, userUpdate } from './authActions'
 import { HYDRATE } from "next-redux-wrapper"
 
 const initialState = {
@@ -33,6 +33,33 @@ const authSlice = createSlice({
             state.userToken = payload.token
         },
         [userLogin.rejected]: (state, { payload }) => {
+            state.loading = false
+            state.error = payload
+        },
+
+        // Sign up
+        [userRegister.pending]: (state) => {
+            state.loading = true
+            state.error = null
+        },
+        [userRegister.fulfilled]: (state, { payload }) => {
+            state.loading = false
+        },
+        [userRegister.rejected]: (state, { payload }) => {
+            state.loading = false
+            state.error = payload
+        },
+
+        // Update user
+        [userUpdate.pending]: (state) => {
+            state.loading = true
+            state.error = null
+        },
+        [userUpdate.fulfilled]: (state, { payload }) => {
+            state.loading = false
+            state.userInfo = payload
+        },
+        [userUpdate.rejected]: (state, { payload }) => {
             state.loading = false
             state.error = payload
         },
