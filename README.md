@@ -11,7 +11,7 @@ This is the frontend of the bookshelf project. It is built with React.js, Next.j
 
 Project compose 2 git submodules:
 1. Front-end: [current repository](./)
-2. Back-end: [./bookshelf-be](github.com/emerald-lan/bookshelf-be)
+2. Back-end: [./bookshelf-be](https://github.com/emerald-lan/bookshelf-be)
 
 ## Running product
 
