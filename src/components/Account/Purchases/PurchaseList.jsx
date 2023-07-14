@@ -22,6 +22,7 @@ import {
 	Badge,
 } from '@chakra-ui/react'
 import bookshelfColors from '@/styles/colors'
+import { API_URL } from '@/constant/api'
 
 function PurchaseList() {
 	const router = useRouter()
@@ -70,7 +71,7 @@ function PurchaseList() {
 export default PurchaseList
 
 export async function getServerSideProps(context) {
-	const { data } = await axios.get('http://127.0.0.1:8000/orders')
+	const { data } = await axios.get(`${API_URL}/orders`)
 	return {
 		props: {},
 	}

@@ -5,8 +5,7 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'http',
-				hostname: '127.0.0.1',
-				port: '8000',
+				hostname: 'emeraldlan1105.pythonanywhere.com',
 				pathname: '/media/images/books/**',
 			},
 		],

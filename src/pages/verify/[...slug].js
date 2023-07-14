@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import axios from 'axios'
-
+import { API_URL } from '@/constant/api';
 
 const EmailVerification = () => {
 	const router = useRouter()
@@ -33,7 +33,7 @@ const EmailVerification = () => {
 export default EmailVerification
 
 export const getServerSideProps = async (context) => {
-	const backendURL = 'http://127.0.0.1:8000'
+	const backendURL = API_URL
     const { slug } = context.query
 
 	// console.log(`${backendURL}/verify/${slug[0]}/${slug[1]}`)
